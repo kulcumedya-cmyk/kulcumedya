@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Külcü Medya | Luxury Social Media Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <title>Külcü Medya | Sezer Külcü - Luxury Social Media Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #FFD700;
             --dark-bg: #000000;
-            --card-bg: #080808;
-            --border-color: #1a1a1a;
+            --card-bg: #0A0A0A;
+            --border-color: #1A1A1A;
             --text-muted: #888888;
+            --font-main: 'Outfit', sans-serif;
+            --font-display: 'Syncopate', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -19,169 +21,196 @@
         body {
             background-color: var(--dark-bg);
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-main);
             line-height: 1.5;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* Live Notification */
+        /* Anlık Bildirim Toast */
         #notification-toast {
             position: fixed; bottom: 20px; left: 20px;
-            background: rgba(15, 15, 15, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             border: 1px solid var(--gold);
-            padding: 15px 20px; border-radius: 12px;
+            padding: 15px 20px; border-radius: 4px;
             display: flex; align-items: center; gap: 12px;
             z-index: 9999; transform: translateY(200%);
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px rgba(255,215,0,0.15);
         }
         #notification-toast.show { transform: translateY(0); }
         .toast-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
-        .toast-text { font-size: 0.8rem; font-weight: 500; color: #fff; }
+        .toast-text { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* Header & Nav */
+        /* Müşteri Yorumları Pop-up */
+        #review-popup {
+            position: fixed; bottom: 100px; left: 20px;
+            background: #0A0A0A; border: 1px solid #222;
+            padding: 15px; border-radius: 4px;
+            max-width: 280px; z-index: 9998;
+            transform: translateX(-150%);
+            transition: 0.6s ease;
+        }
+        #review-popup.show { transform: translateX(0); }
+        .review-user { color: var(--gold); font-weight: 700; font-size: 0.7rem; margin-bottom: 5px; display: block; font-family: var(--font-display); }
+        .review-msg { color: #eee; font-size: 0.8rem; font-weight: 300; }
+
+        /* Header */
         header {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 5%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(15px);
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; }
-        .logo-icon { width: 32px; height: 32px; border: 2.5px solid #fff; border-radius: 8px; }
-        .logo-text { font-weight: 900; font-size: 1.3rem; letter-spacing: -0.5px; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+        .logo-icon { width: 30px; height: 30px; border: 3px solid var(--gold); transform: rotate(45deg); }
+        .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; }
 
-        .nav-right { display: flex; align-items: center; gap: 20px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { 
-            color: #fff; text-decoration: none; font-size: 0.75rem; 
-            font-weight: 600; opacity: 0.7; transition: 0.3s;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .nav-links a:hover { opacity: 1; color: var(--gold); }
-
+        .nav-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+        .social-btns { display: flex; gap: 10px; }
+        
         .tg-btn-nav {
-            background: var(--gold);
-            color: #000;
-            padding: 10px 18px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.7rem;
-            text-decoration: none;
-            display: flex; align-items: center; gap: 6px;
-            text-transform: uppercase;
+            background: #fff; color: #000; padding: 10px 20px;
+            border-radius: 2px; font-weight: 800; font-size: 0.6rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .ig-btn-nav {
+            border: 1px solid #fff; color: #fff; padding: 10px 20px;
+            border-radius: 2px; font-weight: 800; font-size: 0.6rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* Stats Section - Moved to Top */
+        /* İstatistikler */
         .stats-top {
-            padding-top: 140px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
-            padding-left: 5%; padding-right: 5%;
+            padding-top: 160px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px;
+            background: var(--border-color); padding-left: 5%; padding-right: 5%;
         }
         .stat-box {
-            background: #080808; border: 1px solid #1a1a1a;
-            padding: 30px; border-radius: 20px; text-align: center;
+            background: var(--dark-bg); padding: 40px 20px; text-align: center;
         }
-        .stat-val { font-size: 1.5rem; font-weight: 800; color: var(--gold); margin-bottom: 5px; }
-        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+        .stat-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; font-weight: 300; }
 
-        /* Hero Area */
-        .hero { padding: 60px 5% 60px; text-align: center; }
+        /* Hero */
+        .hero { padding: 100px 5% 60px; text-align: center; }
         .camp-badge {
-            display: inline-block; color: var(--gold); font-weight: 900;
-            font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase;
+            display: inline-block; color: var(--gold); font-weight: 700;
+            font-size: 0.9rem; letter-spacing: 6px; margin-bottom: 10px; text-transform: uppercase;
         }
+        .no-price-badge { font-weight: 900; color: #fff; letter-spacing: 2px; font-size: 1.2rem; margin-bottom: 30px; }
+
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 30px; letter-spacing: 1px; font-weight: 700; line-height: 1.1;
+            font-family: var(--font-display); font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 40px; letter-spacing: -2px; font-weight: 700; line-height: 1; text-transform: uppercase;
         }
-        .hero .prices { display: flex; justify-content: center; align-items: baseline; gap: 20px; margin-bottom: 30px; }
-        .hero .old { text-decoration: line-through; opacity: 0.2; font-size: 2.5rem; font-weight: 300; }
-        .hero .new { color: #fff; font-size: 5.5rem; font-weight: 900; text-shadow: 0 0 40px rgba(255,215,0,0.3); }
+        .price-tag { display: flex; justify-content: center; align-items: baseline; gap: 20px; margin-bottom: 40px; }
+        .old-price { color: #333; font-size: 2.5rem; font-weight: 900; text-decoration: line-through; text-decoration-color: #ff0000; }
+        .hero .new { color: #fff; font-size: clamp(4rem, 15vw, 8rem); font-weight: 900; font-family: var(--font-display); letter-spacing: -5px; line-height: 0.8; }
 
-        .sub-text {
-            font-size: 0.95rem; color: #fff; letter-spacing: 1px;
-            margin-bottom: 50px; font-weight: 500; max-width: 600px; margin-left: auto; margin-right: auto;
+        /* Sayaç */
+        .countdown-wrap {
+            margin: 60px auto; max-width: 600px;
+            border: 1px solid var(--border-color);
+            padding: 30px; border-radius: 4px;
         }
+        .countdown-title { font-size: 0.65rem; letter-spacing: 4px; color: var(--text-muted); margin-bottom: 25px; font-weight: 700; text-transform: uppercase; }
+        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .timer-box { display: flex; flex-direction: column; gap: 5px; }
+        .timer-val { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #fff; }
+        .timer-label { font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Vision & Reputation */
-        .vision-card {
-            background: linear-gradient(180deg, #0f0f0f 0%, #050505 100%);
-            border-left: 4px solid var(--gold);
-            padding: 50px; max-width: 900px; margin: 0 auto 100px; text-align: left;
+        /* Kimdir Kartı */
+        .info-card {
+            background: #050505; border: 1px solid var(--border-color);
+            padding: 60px; max-width: 1000px; margin: 100px auto; text-align: left;
         }
-        .vision-card h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; font-weight: 700; }
-        .vision-card p { color: #bbb; font-size: 1rem; line-height: 1.8; }
+        .info-card h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 30px; color: #fff; letter-spacing: -1px; }
+        .info-card p { color: #888; font-size: 1rem; line-height: 1.8; margin-bottom: 25px; font-weight: 300; }
 
-        /* Section Titles */
-        .section-title-wrap { text-align: left; padding: 0 5%; margin-bottom: 50px; }
-        .label-gold { color: var(--gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
-        .main-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); margin-top: 15px; font-weight: 700; }
+        /* ÜCRETSİZ DENE BÖLÜMÜ */
+        .free-trial-section {
+            padding: 120px 5%; text-align: center;
+            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+            margin: 100px 0;
+        }
+        .free-trial-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 3rem); color: var(--gold); margin-bottom: 15px; font-weight: 700; }
+        .free-trial-sub { font-size: 1rem; letter-spacing: 5px; color: #fff; margin-bottom: 50px; font-weight: 400; text-transform: uppercase; }
+        .free-trial-btn {
+            display: inline-block; background: var(--gold); color: #000;
+            padding: 25px 60px; border-radius: 2px; font-weight: 900; font-size: 1.2rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
+        }
+        .free-trial-btn:hover { background: #fff; transform: translateY(-5px); }
 
-        /* Packages Grid */
+        /* Paketler */
+        .section-title-wrap { text-align: left; padding: 0 5%; margin-bottom: 60px; }
+        .label-gold { color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
+        .main-title { font-family: var(--font-display); font-size: 2.5rem; margin-top: 15px; text-transform: uppercase; letter-spacing: -1px; }
+
         .packages-container {
-            padding: 0 5% 80px; display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
+            padding: 0 5% 100px; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1px;
+            background: var(--border-color);
         }
         .pkg-card {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 30px; padding: 50px 40px; position: relative; transition: 0.4s;
+            background: var(--dark-bg); padding: 60px 40px;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .pkg-card:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .pkg-category { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-        .pkg-amount { font-size: 2.8rem; font-weight: 300; margin-bottom: 5px; letter-spacing: -1px; }
-        .pkg-price { font-size: 2.2rem; font-weight: 800; color: #fff; }
-        .pkg-features { list-style: none; margin: 30px 0; border-top: 1px solid #1a1a1a; padding-top: 25px; }
-        .pkg-features li { color: #888; font-size: 0.85rem; margin-bottom: 12px; padding-left: 20px; position: relative; }
-        .pkg-features li::before { content: "•"; color: var(--gold); position: absolute; left: 0; font-weight: 900; }
-
+        .pkg-amount { font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: #fff; margin: 20px 0; letter-spacing: -2px; }
+        .pkg-features { list-style: none; margin: 30px 0; padding-top: 30px; border-top: 1px solid #111; }
+        .pkg-features li { color: #555; font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        
         .btn-yellow {
-            background: var(--gold); color: #000; display: block; width: 100%;
-            padding: 18px; border-radius: 100px; text-align: center; text-decoration: none;
-            font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+            background: #fff; color: #000; display: block; width: 100%;
+            padding: 22px; border-radius: 2px; text-align: center; text-decoration: none;
+            font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
         }
-        .shopier-badge { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-size: 0.7rem; color: #444; font-weight: 600; }
+        .btn-yellow:hover { background: var(--gold); }
 
-        /* Testimonials */
-        .testimonials { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .testi-card { background: #080808; padding: 30px; border-radius: 20px; border: 1px solid #111; }
-        .testi-stars { color: var(--gold); margin-bottom: 15px; font-size: 0.8rem; }
-        .testi-text { font-style: italic; font-size: 0.9rem; color: #999; margin-bottom: 15px; }
-        .testi-user { font-weight: 700; color: #fff; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
-
-        /* Diğer Hizmetler */
-        .other-services { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .other-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; border-radius: 20px; transition: 0.3s; }
-        .other-card h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--gold); }
-        .other-card p { font-size: 0.85rem; color: var(--text-muted); }
-
-        /* FAQ & Form */
-        .faq-section { padding: 0 5% 80px; }
-        .faq-item { background: #080808; border: 1px solid #1a1a1a; margin-bottom: 10px; border-radius: 15px; padding: 20px; }
-        .faq-item h4 { color: var(--gold); margin-bottom: 8px; font-size: 1rem; }
-        .faq-item p { color: #777; font-size: 0.85rem; }
-
-        .contact-section { padding: 0 5% 100px; max-width: 800px; margin: 0 auto; }
-        .contact-form { background: #080808; padding: 40px; border-radius: 30px; border: 1px solid #1a1a1a; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.75rem; color: var(--gold); font-weight: 700; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 15px; background: #000; border: 1px solid #222; border-radius: 10px; color: #fff; font-family: inherit;
+        /* Ekonomik Paketler */
+        .eco-container {
+            padding: 80px 5%; display: flex; flex-direction: column; align-items: center; gap: 30px;
+            background: #050505; border-top: 1px solid var(--border-color);
         }
+        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; width: 100%; max-width: 1200px; }
+        .eco-btn {
+            background: var(--dark-bg); border: 1px solid #1a1a1a; color: #fff; padding: 30px;
+            text-align: center; text-decoration: none; transition: 0.3s;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .eco-btn:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .eco-btn span { font-family: var(--font-display); font-size: 0.6rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        .eco-btn b { font-size: 1.1rem; font-weight: 800; }
 
-        footer { padding: 60px 5%; text-align: center; border-top: 1px solid #111; color: #333; font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; }
+        /* SSS */
+        .faq-section { padding: 100px 5%; border-top: 1px solid var(--border-color); }
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 40px 0; }
+        .faq-item h4 { font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; }
+        .faq-item p { color: #666; font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+
+        footer { padding: 80px 5%; text-align: center; color: #333; font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero .new { font-size: 3.5rem; }
+            header { padding: 15px 5%; }
+            .hero .new { font-size: 4rem; }
+            .stats-top { padding-top: 220px; }
+            .pkg-card { padding: 40px 25px; }
         }
     </style>
 </head>
 <body>
+
+<!-- Müşteri Yorum Pop-up -->
+<div id="review-popup">
+    <span class="review-user" id="review-user">@mehmet_yılmaz</span>
+    <p class="review-msg" id="review-text">"Gerçekten 2 saniyede geldi, helal olsun!"</p>
+</div>
 
 <div id="notification-toast">
     <div class="toast-dot"></div>
@@ -194,278 +223,271 @@
         <div class="logo-text">KÜLCÜ MEDYA</div>
     </a>
     <div class="nav-right">
-        <div class="nav-links">
-            <a href="#hakkimizda">Vizyonumuz</a>
-            <a href="#takipci">Takipçi</a>
-            <a href="#begeni">Beğeni</a>
-            <a href="#iletisim">İletişim</a>
+        <div class="social-btns">
+            <a href="https://t.me/kulcumedya" target="_blank" class="tg-btn-nav">Telegram</a>
+            <a href="https://www.instagram.com/darksezer06?igsh=MW96NWNxa3ZuZWZ1aQ%3D%3D&utm_source=qr" target="_blank" class="ig-btn-nav">Instagram</a>
         </div>
-        <a href="https://t.me/kulcumedya" target="_blank" class="tg-btn-nav">
-            <span>Telegram İletişim</span>
-        </a>
     </div>
 </header>
 
 <div class="stats-top">
     <div class="stat-box">
-        <div class="stat-val">250+ Pro Hesap</div>
-        <div class="stat-label">Aktif Yönetim</div>
+        <div class="stat-val">99.9%</div>
+        <div class="stat-label">Hizmet Kalitesi</div>
     </div>
     <div class="stat-box">
-        <div class="stat-val">%98 Memnuniyet</div>
-        <div class="stat-label">Müşteri Skoru</div>
+        <div class="stat-val">50K+</div>
+        <div class="stat-label">Mutlu Müşteri</div>
     </div>
     <div class="stat-box">
-        <div class="stat-val">2 Saniye</div>
-        <div class="stat-label">İşlem Hızı</div>
+        <div class="stat-val">2 SEC</div>
+        <div class="stat-label">Teslimat Süresi</div>
     </div>
 </div>
 
 <section class="hero">
-    <div class="camp-badge">ŞUBAT AYI DEV KAMPANYA 🔥</div>
-    <h1>10.000 GERÇEK TAKİPÇİ<br>ANINDA TESLİM</h1>
+    <div class="camp-badge">ŞUBAT AYINA ÖZEL 🔥</div>
+    <div class="no-price-badge">BU FİYATA YOK!</div>
+    <h1>SINIRLI SÜRELİ İNDİRİM</h1>
     
-    <div class="prices">
-        <span class="old">550₺</span>
+    <div class="price-tag">
+        <span class="old-price">550₺</span>
         <span class="new">250₺</span>
     </div>
 
-    <p class="sub-text">Külcü Medya güvencesiyle, profilinize profesyonel bir imaj katın. Kendi altyapımız ile 2 saniyede gönderim başlar.</p>
-    
-    <a href="https://www.shopier.com/kulcumedya/43908489" target="_blank" class="btn-yellow" style="max-width: 450px; margin: 0 auto; padding: 25px; font-size: 1.1rem;">KAMPANYAYI ŞİMDİ YAKALA</a>
-    <div class="shopier-badge">💳 Shopier Güvencesiyle Güvenli Ödeme</div>
+    <div class="countdown-wrap">
+        <div class="countdown-title">TEKLİFİN SONA ERMESİNE KALAN</div>
+        <div class="timer-grid">
+            <div class="timer-box"><span class="timer-val" id="days">24</span><span class="timer-label">GÜN</span></div>
+            <div class="timer-box"><span class="timer-val" id="hours">00</span><span class="timer-label">SAAT</span></div>
+            <div class="timer-box"><span class="timer-val" id="mins">00</span><span class="timer-label">DAKİKA</span></div>
+            <div class="timer-box"><span class="timer-val" id="secs">00</span><span class="timer-label">SANİYE</span></div>
+        </div>
+    </div>
 
-    <div class="vision-card" id="hakkimizda" style="margin-top: 100px;">
-        <h2>Vizyonumuz VE Tecrübemiz ✨</h2>
-        <p>Külcü Medya, 2021 yılından bu yana sosyal medya ekosisteminde uzmanlaşmış profesyonel ekibi ve sektör tecrübesiyle dijital prestijinize yön veriyor. Alanında deneyimli kadromuzla, her siparişi titizlikle yönetiyor ve güvenliğinizi en ön planda tutuyoruz. Binlerce mutlu danışmanımızla birlikte, sosyal medyanın zirvesine giden yolda en profesyonel çözümleri sunuyoruz.</p>
+    <a href="https://www.shopier.com/kulcumedya/43908489" target="_blank" class="btn-yellow" style="max-width: 450px; margin: 0 auto; padding: 25px;">HEMEN ŞİMDİ AL</a>
+
+    <div class="info-card">
+        <h2>Selam! Ben Sezer 👋</h2>
+        <p>Ben Sezer, 23 yaşındayım ve dijital dünyanın o karmaşık ama bir o kadar da eğlenceli dünyasında sizin rehberiniz olmaya geldim. Enerjim tavan, işime olan aşkım ise bambaşka! Külcü Medya'yı kurarken tek bir hayalim vardı: Sosyal medyada parlamak isteyen herkese en kaliteli, en hızlı ve "vay be" dedirtecek bir hizmet sunmak.</p>
+        <p>Genç olmanın verdiği vizyonla, piyasadaki eski usul yavaş sistemleri bir kenara ittik. Kendi altyapımızı kurduk, hızımızı 2 saniyeye düşürdük. Benimle çalışan her dostumun hesabını kendi hesabım gibi sahipleniyorum. Sempatik tavrımızla iş yapıyoruz ama sonuçlarımıza gelince işimiz çok ciddi! Hadi, gel beraber senin hesabını da zirveye taşıyalım. 🚀</p>
     </div>
 </section>
 
-<!-- TAKİPÇİ PAKETLERİ -->
-<div class="section-title-wrap" id="takipci">
-    <span class="label-gold">Exclusive Selection</span>
-    <h2 class="main-title">Takipçi VE Prestij Paketleri 👑</h2>
+<section class="free-trial-section">
+    <h2 class="free-trial-title">GÜCÜMÜZÜ TEST EDİN</h2>
+    <p class="free-trial-sub">2 SANİYE HIZIMIZI ŞİMDİ KEŞFEDİN</p>
+    <a href="https://t.me/kulcumedya" target="_blank" class="free-trial-btn">ÜCRETSİZ DENE</a>
+</section>
+
+<div class="section-title-wrap">
+    <span class="label-gold">ECONOMY LINE</span>
+    <h2 class="main-title">HER BÜTÇEYE UYGUN 💸</h2>
+</div>
+
+<div class="eco-container">
+    <div class="eco-grid">
+        <a href="https://t.me/kulcumedya" class="eco-btn">
+            <span>EKONOMİK PAKET</span>
+            <b>500 TAKİPÇİ - 85₺</b>
+        </a>
+        <a href="https://t.me/kulcumedya" class="eco-btn">
+            <span>STANDART PAKET</span>
+            <b>1500 TAKİPÇİ - 150₺</b>
+        </a>
+        <a href="https://t.me/kulcumedya" class="eco-btn">
+            <span>PRO PAKET</span>
+            <b>2000 TAKİPÇİ - 200₺</b>
+        </a>
+    </div>
+</div>
+
+<div class="section-title-wrap">
+    <span class="label-gold">PREMIUM LINE</span>
+    <h2 class="main-title">TAKİPÇİ PAKETLERİ 👑</h2>
 </div>
 
 <section class="packages-container">
     <div class="pkg-card">
-        <div class="pkg-header">
-            <p class="pkg-category">Giriş Paketi</p>
+        <div>
+            <span class="label-gold">STARTUP</span>
             <div class="pkg-amount">5.000+</div>
-            <div class="pkg-price">650₺</div>
+            <ul class="pkg-features">
+                <li>2 SEC Teslimat</li>
+                <li>30 GÜN GARANTİ</li>
+                <li>ÖZEL ALTYAPI</li>
+                <li>NO PASSWORD</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>Kendi sunucularımız üzerinden gönderim.</li>
-            <li>Doğal akış algoritması.</li>
-            <li>7/24 Telegram teknik destek.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
-        <div class="shopier-badge">Shopier Güvencesi</div>
+        <a href="https://www.shopier.com/43906729" target="_blank" class="btn-yellow">250₺ - SATIN AL</a>
     </div>
 
-    <div class="pkg-card" style="border-color: var(--gold);">
-        <div class="pkg-header">
-            <p class="pkg-category">Elite Paketi</p>
+    <div class="pkg-card" style="border: 1px solid var(--gold);">
+        <div>
+            <span class="label-gold">POPULAR</span>
             <div class="pkg-amount">25.000+</div>
-            <div class="pkg-price">2.200₺</div>
+            <ul class="pkg-features">
+                <li>MAX HIZ</li>
+                <li>30 GÜN TELAFİ</li>
+                <li>KÜLCÜ ALTYAPI</li>
+                <li>PREMIUM DESTEK</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>Düşmeye karşı %100 telafi garantisi.</li>
-            <li>Premium kullanıcı datası.</li>
-            <li>Profesyonel gönderim hızı.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
-        <div class="shopier-badge">Shopier Güvencesi</div>
+        <a href="https://www.shopier.com/43906888" target="_blank" class="btn-yellow">600₺ - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
-        <div class="pkg-header">
-            <p class="pkg-category">Mega Paket</p>
+        <div>
+            <span class="label-gold">CORPORATE</span>
             <div class="pkg-amount">50.000+</div>
-            <div class="pkg-price">4.100₺</div>
+            <ul class="pkg-features">
+                <li>VIP AKTİVASYON</li>
+                <li>TAM GÜVENCE</li>
+                <li>KÜLCÜ ÖZEL SİSTEM</li>
+                <li>KEŞFET ETKİSİ</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>Kurumsal hesaplar için maksimum prestij.</li>
-            <li>Özel müşteri temsilcisi.</li>
-            <li>Keşfet etkili global trafik.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
-        <div class="shopier-badge">Shopier Güvencesi</div>
+        <a href="https://www.shopier.com/43906953" target="_blank" class="btn-yellow">1000₺ - SATIN AL</a>
     </div>
 </section>
 
-<!-- BEĞENİ PAKETLERİ -->
-<div class="section-title-wrap" id="begeni">
-    <span class="label-gold">Engagement Boost</span>
-    <h2 class="main-title">Beğeni VE Etkileşim Paketleri ❤️</h2>
+<div class="section-title-wrap">
+    <span class="label-gold">ENGAGEMENT</span>
+    <h2 class="main-title">BEĞENİ PAKETLERİ ❤️</h2>
 </div>
 
-<section class="packages-container">
+<section class="packages-container" style="margin-bottom: 100px;">
     <div class="pkg-card">
-        <div class="pkg-header">
-            <p class="pkg-category">Etkileşim Paketi</p>
-            <div class="pkg-amount">2.000+</div>
-            <div class="pkg-price">150₺</div>
+        <div>
+            <span class="label-gold">LITE</span>
+            <div class="pkg-amount">500+</div>
+            <ul class="pkg-features">
+                <li>ANLIK GÖNDERİM</li>
+                <li>DÜŞMEYEN SİSTEM</li>
+                <li>30 GÜN GARANTİ</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>Türk aktif kullanıcı beğenileri.</li>
-            <li>Keşfet etkili yüksek kalite.</li>
-            <li>Saniyeler içinde teslimat.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
+        <a href="https://www.shopier.com/43907943" target="_blank" class="btn-yellow">40₺ - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
-        <div class="pkg-header">
-            <p class="pkg-category">Global Paket</p>
+        <div>
+            <span class="label-gold">STABLE</span>
             <div class="pkg-amount">10.000+</div>
-            <div class="pkg-price">350₺</div>
+            <ul class="pkg-features">
+                <li>GERÇEK KULLANICI</li>
+                <li>30 GÜN TELAFİ</li>
+                <li>YÜKSEK ETKİLEŞİM</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>Dünya geneli aktif karışık profil.</li>
-            <li>Fotoğraf VE Video prestij desteği.</li>
-            <li>Otomatik sistem onayı.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
+        <a href="https://www.shopier.com/43908027" target="_blank" class="btn-yellow">250₺ - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
-        <div class="pkg-header">
-            <p class="pkg-category">VIP Beğeni</p>
+        <div>
+            <span class="label-gold">ELITE</span>
             <div class="pkg-amount">25.000+</div>
-            <div class="pkg-price">750₺</div>
+            <ul class="pkg-features">
+                <li>VIP SUNUCU</li>
+                <li>KEŞFET GARANTİSİ</li>
+                <li>30 GÜN GÜVENCE</li>
+            </ul>
         </div>
-        <ul class="pkg-features">
-            <li>En yüksek kalite beğeniler.</li>
-            <li>Kalıcı VE güvenli işlemler.</li>
-            <li>İstatistiki veri desteği.</li>
-        </ul>
-        <a href="https://t.me/kulcumedya" target="_blank" class="btn-yellow">Detay Al</a>
+        <a href="https://www.shopier.com/43908062" target="_blank" class="btn-yellow">450₺ - SATIN AL</a>
     </div>
 </section>
 
-<!-- MÜŞTERİ MEMNUNİYETİ -->
-<div class="section-title-wrap">
-    <span class="label-gold">Happy Clients</span>
-    <h2 class="main-title">Müşteri Memnuniyeti VE Yorumlar ⭐</h2>
-</div>
-
-<section class="testimonials">
-    <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Külcü Medya ile çalıştığımdan beri butik hesabımın satışları %40 arttı. Güvenilir VE çok hızlılar."</p>
-        <div class="testi-user">@butik_asli - Aslı Y.</div>
-    </div>
-    <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Kampanya dönemlerinde mutlaka destek alıyorum. 10.000 takipçi gerçekten dedikleri gibi anında geldi."</p>
-        <div class="testi-user">@mert_karasoy - Mert K.</div>
-    </div>
-    <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Luxury hizmet anlayışını gerçekten yansıtıyorlar. İletişim çok iyi."</p>
-        <div class="testi-user">@deniz_agency - Deniz E.</div>
-    </div>
-</section>
-
-<!-- DİĞER HİZMETLER -->
-<div class="section-title-wrap">
-    <span class="label-gold">Professional Tools</span>
-    <h2 class="main-title">Diğer Hizmetlerimiz 🛠️</h2>
-</div>
-
-<section class="other-services">
-    <div class="other-card">
-        <h4>Sanal Numara</h4>
-        <p>WhatsApp VE Telegram için onaylı sanal numara hizmeti.</p>
-    </div>
-    <div class="other-card">
-        <h4>Gizli Profil Görme</h4>
-        <p>Kapalı hesapların paylaşımlarını güvenli görüntüleme servisi.</p>
-    </div>
-    <div class="other-card">
-        <h4>VIP Hesap Yönetimi</h4>
-        <p>Hesabınızın büyümesi için profesyonel içerik VE kitle danışmanlığı.</p>
-    </div>
-    <div class="other-card">
-        <h4>Hesap Kurtarma</h4>
-        <p>Kapatılan hesaplarınız için teknik müdahale desteği.</p>
-    </div>
-</section>
-
-<!-- SSS -->
-<div class="section-title-wrap">
-    <span class="label-gold">Destek</span>
-    <h2 class="main-title">Sıkça Sorulan Sorular 🤔</h2>
-</div>
-
+<!-- SSS EN ALTA TAŞINDI -->
 <section class="faq-section">
-    <div class="faq-item">
-        <h4>Şifre vermem gerekiyor mu?</h4>
-        <p>Kesinlikle hayır. Sadece kullanıcı adınız yeterlidir.</p>
+    <div class="section-title-wrap" style="padding: 0; margin-bottom: 40px;">
+        <span class="label-gold">DESTEK MERKEZİ</span>
+        <h2 class="main-title">SIKÇA SORULAN SORULAR ❓</h2>
     </div>
     <div class="faq-item">
-        <h4>Ödeme kanalları güvenli mi?</h4>
-        <p>Shopier üzerinden 256-bit SSL korumasıyla gerçekleşir.</p>
+        <h4>ÖDEME SİSTEMİ GÜVENLİ Mİ?</h4>
+        <p>Tüm işlemler Shopier altyapısı ve 256-bit SSL sertifikası ile korunmaktadır. Kredi kartı bilgileriniz asla sistemimizde tutulmaz.</p>
     </div>
-</section>
-
-<!-- İLETİŞİM FORMU -->
-<div class="section-title-wrap" id="iletisim">
-    <span class="label-gold">Contact Us</span>
-    <h2 class="main-title">Hızlı İletişim Formu ✍️</h2>
-</div>
-
-<section class="contact-section">
-    <div class="contact-form">
-        <div class="form-group">
-            <label>ADINIZ VE SOYADINIZ</label>
-            <input type="text" placeholder="Örn: Ahmet Yılmaz">
-        </div>
-        <div class="form-group">
-            <label>TELEFON NUMARANIZ</label>
-            <input type="tel" placeholder="05XX XXX XX XX">
-        </div>
-        <div class="form-group">
-            <label>MESAJINIZ</label>
-            <textarea rows="5" placeholder="Hizmetlerimiz hakkında detaylı bilgi almak için yazabilirsiniz..."></textarea>
-        </div>
-        <button class="btn-yellow" style="border: none; cursor: pointer;">MESAJI GÖNDER</button>
+    <div class="faq-item">
+        <h4>TESLİMAT NE ZAMAN BAŞLAR?</h4>
+        <p>Kendi özel yazılım altyapımız sayesinde ödeme onaylandığı an (ortalama 2 saniye) işlemleriniz otomatik olarak tetiklenir.</p>
+    </div>
+    <div class="faq-item">
+        <h4>30 GÜN GARANTİ NEDİR?</h4>
+        <p>Satın aldığınız hizmetlerde 30 gün boyunca yaşanabilecek her türlü teknik aksaklık veya düşüşte ücretsiz telafi sağlıyoruz.</p>
     </div>
 </section>
 
 <footer>
-    © 2021-2026 KÜLCÜ MEDYA | LUXURY DIGITAL AGENCY SERVICES ✨
+    © 2021-2026 KÜLCÜ MEDYA | SEZER KÜLCÜ - LUXURY DIGITAL SOLUTIONS
 </footer>
 
 <script>
+    // --- GERİ SAYIM SİSTEMİ ---
+    let deadline = new Date();
+    deadline.setDate(deadline.getDate() + 24);
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const t = deadline - now;
+        const d = Math.floor(t / (1000 * 60 * 60 * 24));
+        const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((t % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = d;
+        document.getElementById("hours").innerHTML = h < 10 ? '0'+h : h;
+        document.getElementById("mins").innerHTML = m < 10 ? '0'+m : m;
+        document.getElementById("secs").innerHTML = s < 10 ? '0'+s : s;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // --- MÜŞTERİ YORUM POPUP ---
+    const reviews = [
+        {user: "@aylin_moda", text: "30 saniyede takipçiler gelmeye başladı, teşekkürler!"},
+        {user: "@caner_fitness", text: "Gerçekten 2 saniyede tetikleniyor, inanılmaz hız."},
+        {user: "@elif_tasarim", text: "Beğeni paketi aldım, keşfete düştüm resmen."},
+        {user: "@berk_gamer06", text: "Külcü Medya farkı... Güvenilir adres."},
+        {user: "@zeynep_vlog", text: "Deneme paketini kullandım, hemen büyük paketi aldım."},
+        {user: "@mert_kurumsal", text: "Sistemleri çok profesyonel, altyapı sağlam."},
+        {user: "@deniz_photography", text: "30 gün garanti vermeleri çok güven verdi."}
+    ];
+
+    const reviewPopup = document.getElementById('review-popup');
+    const rUser = document.getElementById('review-user');
+    const rText = document.getElementById('review-text');
+
+    function showReview() {
+        const r = reviews[Math.floor(Math.random() * reviews.length)];
+        rUser.innerText = r.user;
+        rText.innerText = r.text;
+        reviewPopup.classList.add('show');
+        setTimeout(() => reviewPopup.classList.remove('show'), 5000);
+    }
+    setInterval(showReview, 12000);
+    setTimeout(showReview, 4000);
+
+    // --- BİLDİRİM TOAST ---
     const notifications = [
-        "Bir kullanıcı 10.000 Takipçi paketini satın aldı! 🔥",
-        "Şu anda 4 kişi Prestij Paketi'ni inceliyor... 👑",
-        "Mehmet Y. az önce 2.000 Beğeni satın aldı! ❤️",
-        "Gizli Profil Görme servisi şu an yoğun talep görüyor. 🕵️",
-        "Ayşe K. Elite Paketi satın aldı! ✨",
-        "Bir kullanıcı kampanya paketini sepetine ekledi!"
+        "Bir kullanıcı 25.000 Takipçi paketini satın aldı! 🔥",
+        "Sezer Külcü (23) az önce bir siparişi onayladı! ✅",
+        "Bir müşteri 10.000 Beğeni sepetine ekledi! ❤️",
+        "Bir kullanıcı ÜCRETSİZ DENE hizmetini kullandı! ⚡"
     ];
 
     const toast = document.getElementById('notification-toast');
     const content = document.getElementById('notification-content');
 
     function showNotification() {
-        const randomText = notifications[Math.floor(Math.random() * notifications.length)];
-        content.innerText = randomText;
+        content.innerText = notifications[Math.floor(Math.random() * notifications.length)];
         toast.classList.add('show');
-
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 4000);
+        setTimeout(() => toast.classList.remove('show'), 4000);
     }
-
-    // İlk bildirim 3 sn sonra, sonra her 10-15 sn'de bir
-    setTimeout(showNotification, 3000);
-    setInterval(showNotification, 12000);
+    setInterval(showNotification, 15000);
+    setTimeout(showNotification, 2000);
 </script>
 
 </body>
 </html>
+
 
