@@ -408,32 +408,33 @@
     <div class="toast-text" id="notification-content">Bir kullanıcı paketi inceliyor...</div>
 </div>
 
-<header>
-    <a href="#" class="logo-wrap">
-        <div class="logo-km">KM</div>
-        <div class="logo-text-group">
-            <div class="logo-text">KÜLCÜ MEDYA</div>
-            <div class="logo-subtitle">5 Yıllık Deneyim | 2 Sn Hız | Uzman Ekip</div>
+<header<header style="display: flex; flex-direction: column; background: #000; padding: 15px; border-bottom: 2px solid var(--gold); gap: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div class="logo-area">
+             <h1 style="color: #fff; margin: 0; font-size: 1.2rem; letter-spacing: 1px;">KÜLCÜ <span style="color: var(--gold);">MEDYA</span></h1>
         </div>
-    </a>
-    <div class="nav-right">
-        <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ KİMDİR?</div>
-        <div class="social-btns">
-            <!-- Telegram butonu kaldırıldı, sadece Instagram kaldı -->
-            <a href="https://www.instagram.com/darksezer06" target="_blank" class="ig-btn-nav">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            Instagram
-        </a>
+        <div style="text-align: right;">
+            <p style="color: var(--gold); font-size: 9px; margin: 0; font-weight: bold; line-height: 1.2;">
+                5 YILLIK DENEYİM | 2 SN HIZ<br>UZMAN EKİP
+            </p>
         </div>
     </div>
-<<div class="who-btn" onclick="document.getElementById('php-popup').style.display='block'" style="border: 1px solid var(--gold); color: var(--gold); cursor: pointer; padding: 8px 12px; border-radius: 4px; font-size: 9px; font-weight: bold; display: inline-block; width: 160px; text-align: center; margin-top: 5px; text-transform: uppercase; white-space: nowrap;">
-    Yazılım ve PHP Dersleri
-</div>
 
-    Yazılım ve PHP Dersleri
-</div>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+        <div onclick="openWho()" style="border: 1px solid var(--gold); color: var(--gold); cursor: pointer; padding: 10px; border-radius: 4px; font-size: 11px; font-weight: bold; width: 200px; text-align: center; text-transform: uppercase;">
+            SEZER KÜLCÜ KİMDİR?
+        </div>
+        
+        <div onclick="document.getElementById('php-popup').style.display='block'" style="border: 1px solid var(--gold); color: var(--gold); cursor: pointer; padding: 10px; border-radius: 4px; font-size: 11px; font-weight: bold; width: 200px; text-align: center; text-transform: uppercase;">
+            YAZILIM VE PHP DERSLERİ
+        </div>
+
+        <a href="https://www.instagram.com/kulcumedya" target="_blank" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; text-decoration: none; padding: 10px; border-radius: 4px; font-size: 11px; font-weight: bold; width: 200px; text-align: center; text-transform: uppercase;">
+            INSTAGRAM ADRESİMİZ
+        </a>
+    </div>
+</header>
+
 
 </div>
 </header>
