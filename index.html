@@ -86,6 +86,7 @@
 
         .logo-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
         
+        /* KM Logo Icon */
         .logo-km { 
             width: 42px; 
             height: 42px; 
@@ -136,6 +137,7 @@
         .who-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); }
         
         .social-btns { display: flex; gap: 10px; }
+        /* Telegram Butonu Kaldırıldı */
         .ig-btn-nav { 
             background: var(--instagram-gradient); 
             color: #fff; 
@@ -152,53 +154,14 @@
         }
         .ig-btn-nav:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
+        /* Stats Section */
         .stats-top { padding-top: 160px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border-color); padding-left: 5%; padding-right: 5%; }
         .stat-box { background: var(--dark-bg); padding: 40px 20px; text-align: center; }
         .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
         .stat-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; }
 
-        .hero { padding: 60px 5% 60px; text-align: center; }
-        
-        .image-text-block {
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .quality-badge {
-            border: 1px solid var(--gold);
-            color: #888;
-            padding: 8px 25px;
-            font-family: var(--font-main);
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-        .main-hero-title {
-            font-family: var(--font-main);
-            font-weight: 800;
-            font-size: clamp(1.8rem, 6vw, 3.2rem);
-            line-height: 1.1;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .main-hero-title span {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-desc {
-            max-width: 600px;
-            margin: 20px auto;
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .hero-desc strong { color: #aaa; }
-
-        .hero h1 { font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 2.5rem); margin-bottom: 30px; text-transform: uppercase; color: #fff; line-height: 1.4; }
+        .hero { padding: 100px 5% 60px; text-align: center; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 2.5rem); margin-bottom: 20px; text-transform: uppercase; color: #fff; line-height: 1.4; }
         
         .price-announcement {
             margin-bottom: 20px;
@@ -232,58 +195,8 @@
         .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .timer-val { font-family: var(--font-display); font-size: 2rem; font-weight: 700; }
 
-        .satisfaction-section {
-            padding: 40px 5%;
-            background: #000;
-            text-align: center;
-        }
-        .satisfaction-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #0A0A0A;
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 4px;
-        }
-        .sat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 15px;
-            font-family: var(--font-display);
-        }
-        .sat-title { font-size: 0.7rem; color: #888; letter-spacing: 2px; }
-        .sat-score { font-size: 1.5rem; color: var(--gold); font-weight: 900; }
-        .progress-bg {
-            width: 100%;
-            height: 12px;
-            background: #1A1A1A;
-            border-radius: 50px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        .progress-fill {
-            height: 100%;
-            width: 98%;
-            background: var(--gold-gradient);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            border-radius: 50px;
-            position: relative;
-        }
-        .sat-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.6rem;
-            color: #555;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .sat-labels span.active { color: var(--gold); }
-
         .packages-container {
-            padding: 20px 5% 40px; display: grid;
+            padding: 40px 5% 60px; display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
             background: #000;
         }
@@ -319,6 +232,30 @@
             padding: 22px; border-radius: 2px; text-align: center; text-decoration: none;
             font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
             font-family: var(--font-display);
+        }
+
+        /* YENİ ALTIN BUTON STİLİ */
+        .btn-gold-promo {
+            background: var(--gold);
+            color: #000;
+            display: inline-block;
+            width: 100%;
+            max-width: 450px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: var(--font-display);
+        }
+        .btn-gold-promo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
         }
 
         .customer-reviews-section {
@@ -417,7 +354,6 @@
         .contact-link { border: 1px solid var(--border-color); padding: 20px 40px; color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; margin: 10px; display: inline-block; font-family: var(--font-display); font-size: 0.7rem; }
         .contact-link:hover { border-color: var(--gold); color: var(--gold); }
         
-        /* Yeni Eklenen Stiller */
         .footer-desc { color: #888; max-width: 600px; margin: 0 auto 30px; font-size: 0.9rem; line-height: 1.6; }
         .mail-link { color: var(--gold); font-family: var(--font-display); font-size: 0.8rem; text-decoration: none; display: block; margin-top: 10px; }
         .btn-support { 
@@ -483,26 +419,30 @@
     <div class="nav-right">
         <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ KİMDİR?</div>
         <div class="social-btns">
+            <!-- Telegram butonu kaldırıldı, sadece Instagram kaldı -->
             <a href="https://www.instagram.com/darksezer06" target="_blank" class="ig-btn-nav">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Instagram
-            </a>
+            </svg>
+            Instagram
+        </a>
         </div>
     </div>
 </header>
 
 <div class="stats-top">
     <div class="stat-box">
+        <div class="stat-top-info"><span>KÜLCÜ MEDYA</span> ALTYAPISI</div>
         <div class="stat-val">%100</div>
         <div class="stat-label">MEMNUNİYET</div>
     </div>
     <div class="stat-box">
+        <div class="stat-top-info">YÜKSEK <span>HIZ</span> VE PERFORMANS</div>
         <div class="stat-val">50B+</div>
         <div class="stat-label">MUTLU MÜŞTERİ</div>
     </div>
     <div class="stat-box">
+        <div class="stat-top-info"><span>PREMIUM</span> TESLİMAT SİSTEMİ</div>
         <div class="stat-val">2 SANİYE</div>
         <div class="stat-label">TESLİMAT HIZI</div>
     </div>
@@ -537,28 +477,11 @@
         </div>
     </div>
 
-    <div style="text-align: center; margin-bottom: 40px;">
-        <a href="https://www.shopier.com/43908489" target="_blank" style="
-            display: inline-block;
-            width: 85%;
-            max-width: 400px;
-            padding: 18px 0;
-            background: #f1d34d;
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 0 20px rgba(241, 211, 77, 0.5);
-            transition: 0.3s;
-            font-family: sans-serif;
-        ">
-            HEMEN SATIN AL
-        </a>
+    <!-- Dev Altın Buton -->
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="https://www.shopier.com/43908489" target="_blank" class="btn-gold-promo">SİPARİŞ VER</a>
     </div>
-    </section>
+</section>
 
 <section class="economic-section">
     <h2 class="gold-title">HER BÜTÇEYE UYGUN SERVİSLER</h2>
@@ -682,7 +605,7 @@
                 <li>• %100 Güvenli Ödeme</li>
             </ul>
         </div>
-        <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-buy">105₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43907943" target="_blank" class="btn-buy">105₺ - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
@@ -698,23 +621,22 @@
                 <li>• Premium Külcü Medya Desteği</li>
             </ul>
         </div>
-        <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-buy">350₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43908027" target="_blank" class="btn-buy">350₺ - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
-        <div class="pkg-badge">PRO ETKİLEŞİM</div>
+        <div class="pkg-badge">ULTRA VIP</div>
         <div>
             <h4>PREMIUM BEĞENİ</h4>
             <div class="pkg-amount">50.000+</div>
             <ul class="pkg-features">
-                <li>• Global Popülerlik Garantisi</li>
-                <li>• Keşfet Bölümünde Öne Çıkma</li>
-                <li>• Organik Görünümlü Artış</li>
-                <li>• 7/24 Teknik Destek</li>
-                <li>• Kurumsal Marka Desteği</li>
+                <li>• %100 Keşfet Etkili</li>
+                <li>• Külcü Medya Özel Sunucu</li>
+                <li>• 7/24 Destek Hattı</li>
+                <li>• Teslimat süresi 1-7 Gün</li>
             </ul>
         </div>
-        <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-buy">850₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850₺ - SATIN AL</a>
     </div>
 </section>
 
@@ -825,4 +747,5 @@
 
 </body>
 </html>
+
 
