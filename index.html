@@ -86,7 +86,6 @@
 
         .logo-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
         
-        /* KM Logo Icon */
         .logo-km { 
             width: 42px; 
             height: 42px; 
@@ -190,9 +189,10 @@
         
         .hero .new { color: var(--gold); font-size: clamp(4rem, 15vw, 9rem); font-weight: 900; font-family: var(--font-display); line-height: 0.8; margin-top: 10px; }
 
-        .countdown-wrap { margin: 60px auto 30px; max-width: 600px; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; }
-        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .timer-val { font-family: var(--font-display); font-size: 2rem; font-weight: 700; }
+        .countdown-wrap { margin: 60px auto 30px; max-width: 500px; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; background: rgba(255, 215, 0, 0.03); }
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .timer-val { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+        .timer-box small { letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
 
         .packages-container {
             padding: 40px 5% 60px; display: grid;
@@ -380,6 +380,7 @@
             .logo-wrap { gap: 10px; }
             .logo-km { width: 38px; height: 38px; font-size: 0.9rem; }
             .main-hero-title { font-size: 1.8rem; }
+            .timer-val { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -454,7 +455,7 @@
         </p>
     </div>
 
-    <h3 style="color:var(--gold); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 15px; font-family: var(--font-display); font-weight: 900;">🚀 ŞUBAT AYINA ÖZEL 🚀</h3>
+    <h3 style="color:var(--gold); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 15px; font-family: var(--font-display); font-weight: 900;">🔥 KAMPANYA SONA ERİYOR 🔥</h3>
     <h1>BU FİYATA YOK!<br>GÖRÜNCE İNANAMAYACAKSINIZ</h1>
     
     <div class="price-announcement">
@@ -467,10 +468,9 @@
 
     <div class="countdown-wrap">
         <div class="timer-grid">
-            <div class="timer-box"><span class="timer-val" id="days">24</span><br><small>GÜN</small></div>
-            <div class="timer-box"><span class="timer-val" id="hours">00</span><br><small>SAAT</small></div>
-            <div class="timer-box"><span class="timer-val" id="mins">00</span><br><small>DAK</small></div>
-            <div class="timer-box"><span class="timer-val" id="secs">00</span><br><small>SN</small></div>
+            <div class="timer-box"><span class="timer-val" id="hours">15</span><br><small>SAAT</small></div>
+            <div class="timer-box"><span class="timer-val" id="mins">00</span><br><small>DAKİKA</small></div>
+            <div class="timer-box"><span class="timer-val" id="secs">00</span><br><small>SANİYE</small></div>
         </div>
     </div>
 
@@ -661,47 +661,56 @@
     </div>
     <div class="faq-item">
         <p class="faq-q">Neden Külcü Medyayı Tercih Etmelisiniz?</p>
-        <p class="faq-a">Çünkü biz sadece "takipçi" satmıyoruz, size dijital bir prestij sunuyoruz. Diğer panellerin aksine, kendi yazdığımız özel API altyapımız sayesinde siparişleriniz saniyeler içinde işleme alınır. 5 yıllık sektörel tecrübemiz ve binlerce mutlu müşterimizle, hız ve güvenin tek adresiyiz.</p>
-    </div>
-    <div class="faq-item">
-        <p class="faq-q">Biz Kimiz?</p>
-        <p class="faq-a">Külcü Medya, 2021 yılında Sezer Külcü tarafından sosyal medyadaki yavaşlık ve güvensizlik problemlerini çözmek amacıyla kurulmuştur. Genç, dinamik ve teknoloji odaklı ekibimizle, bireysel kullanıcılardan kurumsal markalara kadar geniş bir yelpazede premium sosyal medya danışmanlığı ve servis sağlayıcılığı yapmaktayız.</p>
+        <p class="faq-a">Çünkü biz sadece "takipçi" satmıyoruz, size dijital bir prestij sunuyoruz. Diğer panellerin aksine, kendi yazdığımız özel API altyapımız sayesinde siparişleriniz saniyeler içinde işleme alınır.</p>
     </div>
 </section>
 
 <section class="contact-section">
     <h2 class="contact-title" style="font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 20px;">SİZİN İÇİN BURADAYIZ</h2>
     <p class="footer-desc">
-        Hesabınızı bir sonraki seviyeye taşımak ve rakiplerinizin önüne geçmek için her adımda yanınızdayız. Profesyonel ekibimiz ve kesintisiz altyapımızla dijital dünyadaki en büyük destekçiniz Külcü Medya!
+        Hesabınızı bir sonraki seviyeye taşımak ve rakiplerinizin önüne geçmek için her adımda yanınızdayız.
     </p>
     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <a href="https://www.instagram.com/darksezer06" target="_blank" class="contact-link">INSTAGRAM DM</a>
             <a href="mailto:kulcumedya@gmail.com" class="btn-support">DESTEK TALEBİ OLUŞTUR</a>
         </div>
-        <a href="mailto:kulcumedya@gmail.com" class="mail-link">SORUN VE GÖRÜŞLERİNİZ İÇİN: @KULCUMEDYA@GMAIL.COM</a>
+        <a href="mailto:kulcumedya@gmail.com" class="mail-link">@KULCUMEDYA@GMAIL.COM</a>
     </div>
 </section>
 
 <footer>
-    © 2021 KÜLCÜ MEDYA | 5 YILLIK DENEYİM - PROFESYONEL EKİP - HIZ - GÜVEN | SEZER KÜLCÜ
+    © 2021 KÜLCÜ MEDYA | SEZER KÜLCÜ
 </footer>
 
 <script>
     function openWho() { document.getElementById('about-modal').style.display = 'flex'; }
     function closeWho() { document.getElementById('about-modal').style.display = 'none'; }
 
-    let deadline = new Date();
-    deadline.setDate(deadline.getDate() + 24);
+    // 15 saatlik sayaç kurulumu
+    const durationInMs = 15 * 60 * 60 * 1000;
+    const deadline = new Date().getTime() + durationInMs;
+
     function updateTimer() {
         const now = new Date().getTime();
         const t = deadline - now;
-        if (t < 0) return;
-        document.getElementById("days").innerHTML = Math.floor(t / (1000 * 60 * 60 * 24));
-        document.getElementById("hours").innerHTML = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        document.getElementById("mins").innerHTML = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById("secs").innerHTML = Math.floor((t % (1000 * 60)) / 1000);
+        
+        if (t <= 0) {
+            document.getElementById("hours").innerHTML = "00";
+            document.getElementById("mins").innerHTML = "00";
+            document.getElementById("secs").innerHTML = "00";
+            return;
+        }
+
+        const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((t % (1000 * 60)) / 1000);
+
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.getElementById("mins").innerHTML = mins < 10 ? "0" + mins : mins;
+        document.getElementById("secs").innerHTML = secs < 10 ? "0" + secs : secs;
     }
+
     setInterval(updateTimer, 1000);
     updateTimer();
 
@@ -725,4 +734,7 @@
 
 </body>
 </html>
+
+
+
 
