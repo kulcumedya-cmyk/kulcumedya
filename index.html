@@ -15,9 +15,8 @@
             --text-muted: #888888;
             --font-main: 'Outfit', sans-serif;
             --font-display: 'Syncopate', sans-serif;
-            /* Platform Colors */
             --telegram-blue: #0088cc;
-            --instagram-gradient: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -31,7 +30,44 @@
             overflow-x: hidden;
         }
 
-        /* Bildirim Toast */
+        #dynamic-notif {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(10, 10, 10, 0.95);
+            border-left: 4px solid var(--gold);
+            border-top: 1px solid #222;
+            border-right: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            transform: translateX(150%);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 320px;
+        }
+        #dynamic-notif.show { transform: translateX(0); }
+        .notif-icon-circle {
+            width: 45px;
+            height: 45px;
+            background: #111;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; border: 1px solid #333;
+        }
+        .notif-content { flex-grow: 1; }
+        .notif-title {
+            font-size: 0.75rem; font-weight: 800; color: var(--gold);
+            text-transform: uppercase; font-family: var(--font-display);
+            display: block; margin-bottom: 3px;
+        }
+        .notif-desc { font-size: 0.8rem; color: #fff; line-height: 1.3; }
+        .notif-time { font-size: 0.65rem; color: #555; display: block; margin-top: 5px; }
+
         #notification-toast {
             position: fixed; bottom: 20px; left: 20px;
             background: rgba(10, 10, 10, 0.98);
@@ -46,7 +82,6 @@
         .toast-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
         .toast-text { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* Yorum Pop-up */
         #review-popup {
             position: fixed; bottom: 100px; left: 20px;
             background: #0A0A0A; border: 1px solid #222;
@@ -59,7 +94,6 @@
         .review-user { color: var(--gold); font-weight: 700; font-size: 0.7rem; margin-bottom: 5px; display: block; font-family: var(--font-display); }
         .review-msg { color: #eee; font-size: 0.8rem; font-weight: 300; }
 
-        /* Kimdir Modal */
         #about-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95);
@@ -74,128 +108,110 @@
         .close-modal { position: absolute; top: 15px; right: 20px; color: var(--gold); font-size: 1.5rem; cursor: pointer; font-weight: 900; }
         .modal-title { font-family: var(--font-display); color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
 
+        #lesson-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98);
+            z-index: 2001; display: none; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .lesson-card {
+            background: #0A0A0A; border: 2px solid var(--gold);
+            padding: 40px; border-radius: 8px; max-width: 600px; position: relative;
+            text-align: center; box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+        }
+        .lesson-header { font-family: var(--font-display); color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+        .lesson-text { color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 25px; text-align: left; }
+        .price-badge { border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; font-weight: 900; font-size: 0.8rem; border-radius: 4px; margin-bottom: 20px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
+
         header {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%;
+            padding: 15px 5%; 
             background: rgba(0,0,0,0.98);
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            min-height: 80px;
         }
 
         .logo-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
-        
         .logo-km { 
-            width: 42px; 
-            height: 42px; 
-            background: var(--gold-gradient);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 900;
-            color: #000;
-            font-size: 1.1rem;
-            letter-spacing: -1px;
-            box-shadow: 0 0 15px rgba(255,215,0,0.3);
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
+            width: 42px; height: 42px; background: var(--gold-gradient); border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 900; color: #000; font-size: 1.1rem;
+            letter-spacing: -1px; box-shadow: 0 0 15px rgba(255,215,0,0.3); position: relative; overflow: hidden; flex-shrink: 0;
         }
         .logo-km::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
+            transform: rotate(45deg); animation: shine 3s infinite;
         }
-        @keyframes shine {
-            0% { left: -150%; }
-            100% { left: 150%; }
-        }
+        @keyframes shine { 0% { left: -150%; } 100% { left: 150%; } }
 
-        .logo-text-group { display: flex; flex-direction: column; }
+        .logo-text-group { display: flex; flex-direction: column; justify-content: center; }
         .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; line-height: 1; }
-        .logo-subtitle { 
-            font-size: 0.55rem; 
-            color: var(--gold); 
-            letter-spacing: 1px; 
-            margin-top: 5px; 
-            font-weight: 600; 
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
+        .logo-subtitle { font-size: 0.55rem; color: var(--gold); letter-spacing: 1px; margin-top: 4px; font-weight: 600; text-transform: uppercase; opacity: 0.9; line-height: 1.1; }
 
         .nav-right { display: flex; align-items: center; gap: 15px; }
-        .who-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); }
+        .btn-stack { display: flex; flex-direction: column; gap: 5px; }
+
+        .who-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); text-align: center; transition: 0.3s; }
+        .who-btn:hover { background: rgba(255, 215, 0, 0.1); }
+        
+        .lesson-btn { background: var(--gold); color: #000; padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); border: 1px solid var(--gold); text-align: center; text-decoration: none; transition: 0.3s; }
+        .lesson-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
         
         .social-btns { display: flex; gap: 10px; }
+        
         .ig-btn-nav { 
             background: var(--instagram-gradient); 
             color: #fff; 
             padding: 10px 18px; 
-            border-radius: 4px; 
+            border-radius: 6px; 
             font-weight: 800; 
             font-size: 0.65rem; 
             text-decoration: none; 
             text-transform: uppercase; 
             display: flex; 
             align-items: center; 
-            gap: 8px;
-            transition: 0.3s;
-        }
-        .ig-btn-nav:hover { transform: translateY(-2px); filter: brightness(1.2); }
-
-        /* Yeni Altyapı Vurgu Başlığı */
-        .infrastructure-hero {
-            padding-top: 100px;
-            background: #080808;
-            border-bottom: 1px solid var(--border-color);
-            text-align: center;
-            padding-bottom: 20px;
-        }
-        .infra-badge {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.6rem;
+            gap: 8px; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
             font-family: var(--font-display);
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
         }
-        .infra-title {
-            font-family: var(--font-display);
-            font-size: clamp(1rem, 3vw, 1.8rem);
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: -1px;
-            text-transform: uppercase;
+        .ig-btn-nav:hover { 
+            transform: translateY(-2px) scale(1.05); 
+            filter: brightness(1.1); 
+            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5);
         }
-        .infra-title span {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .infra-sub {
-            color: #555;
-            font-size: 0.75rem;
-            margin-top: 5px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .ig-icon { width: 16px; height: 16px; fill: currentColor; }
 
-        /* Stats Section */
+        /* DÜZENLENEN BÖLÜM: PADDING ARTIRILDI */
+        .infrastructure-hero { 
+            padding-top: 160px; 
+            background: #080808; 
+            border-bottom: 1px solid var(--border-color); 
+            text-align: center; 
+            padding-bottom: 30px; 
+        }
+        .infra-badge { 
+            display: inline-block; 
+            background: rgba(255, 215, 0, 0.1); 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            padding: 8px 20px; 
+            border-radius: 50px; 
+            font-size: 0.7rem; 
+            font-family: var(--font-display); 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+        .infra-title { font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; }
+        .infra-title span { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .infra-sub { color: #555; font-size: 0.75rem; margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+
         .stats-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border-color); padding-left: 5%; padding-right: 5%; }
         .stat-box { background: var(--dark-bg); padding: 40px 20px; text-align: center; }
         .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
@@ -203,33 +219,10 @@
 
         .hero { padding: 80px 5% 60px; text-align: center; }
         .hero h1 { font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 2.5rem); margin-bottom: 20px; text-transform: uppercase; color: #fff; line-height: 1.4; }
-        
-        .price-announcement {
-            margin-bottom: 20px;
-            font-family: var(--font-display);
-            text-transform: uppercase;
-        }
-        
-        .price-label-big { 
-            font-size: clamp(2.5rem, 8vw, 5rem); 
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block; 
-            font-weight: 900;
-            margin-bottom: 5px;
-            letter-spacing: -2px;
-        }
-        .price-sub-label {
-            font-size: 1.2rem;
-            color: #fff;
-            display: block;
-            margin-bottom: 15px;
-            letter-spacing: 4px;
-        }
-        
+        .price-announcement { margin-bottom: 20px; font-family: var(--font-display); text-transform: uppercase; }
+        .price-label-big { font-size: clamp(2.5rem, 8vw, 5rem); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; font-weight: 900; margin-bottom: 5px; letter-spacing: -2px; }
+        .price-sub-label { font-size: 1.2rem; color: #fff; display: block; margin-bottom: 15px; letter-spacing: 4px; }
         .old-price { text-decoration: line-through; color: #ff4444; font-size: 2rem; margin-right: 15px; opacity: 0.7; font-weight: 700; }
-        
         .hero .new { color: var(--gold); font-size: clamp(4rem, 15vw, 9rem); font-weight: 900; font-family: var(--font-display); line-height: 0.8; margin-top: 10px; }
 
         .countdown-wrap { margin: 60px auto 30px; max-width: 500px; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; background: rgba(255, 215, 0, 0.03); }
@@ -237,154 +230,45 @@
         .timer-val { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--gold); }
         .timer-box small { letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
 
-        .packages-container {
-            padding: 40px 5% 60px; display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
-            background: #000;
-        }
-        
-        .pkg-card {
-            background: var(--gold);
-            padding: 60px 40px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            border-radius: 4px;
-            transition: 0.3s;
-            color: #000;
-            position: relative;
-        }
+        .packages-container { padding: 40px 5% 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; background: #000; }
+        .pkg-card { background: var(--gold); padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 4px; transition: 0.3s; color: #000; position: relative; }
         .pkg-card:hover { transform: translateY(-10px); }
-        
-        .pkg-badge {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            background: #000; color: var(--gold);
-            padding: 8px 25px; border: 2px solid var(--gold);
-            font-family: var(--font-display); font-size: 0.6rem; font-weight: 900;
-            white-space: nowrap; border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(255,215,0,0.3);
-            z-index: 10;
-        }
-
+        .pkg-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #000; color: var(--gold); padding: 8px 25px; border: 2px solid var(--gold); font-family: var(--font-display); font-size: 0.6rem; font-weight: 900; white-space: nowrap; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,215,0,0.3); z-index: 10; }
         .pkg-card h4 { font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 10px; font-weight: 800; letter-spacing: 1px; }
         .pkg-amount { font-family: var(--font-display); font-size: 3rem; font-weight: 900; margin: 10px 0; letter-spacing: -2px; }
         .pkg-features { list-style: none; margin: 30px 0; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.1); }
         .pkg-features li { font-size: 0.75rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 900; line-height: 1.3; font-family: var(--font-main); display: flex; align-items: flex-start; gap: 5px; }
-        
-        .btn-buy {
-            background: #000; color: var(--gold); display: block; width: 100%;
-            padding: 22px; border-radius: 2px; text-align: center; text-decoration: none;
-            font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
-            font-family: var(--font-display);
-        }
+        .btn-buy { background: #000; color: var(--gold); display: block; width: 100%; padding: 22px; border-radius: 2px; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-display); }
 
-        .btn-gold-promo {
-            background: var(--gold);
-            color: #000;
-            display: inline-block;
-            width: 100%;
-            max-width: 450px;
-            padding: 25px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-family: var(--font-display);
-        }
-        .btn-gold-promo:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
-        }
+        .btn-gold-promo { background: var(--gold); color: #000; display: inline-block; width: 100%; max-width: 450px; padding: 25px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); transition: transform 0.3s, box-shadow 0.3s; font-family: var(--font-display); }
+        .btn-gold-promo:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
 
-        .customer-reviews-section {
-            padding: 80px 5%;
-            background: #050505;
-            border-top: 1px solid var(--border-color);
-        }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .review-card {
-            background: #0A0A0A;
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 8px;
-            transition: 0.3s;
-            position: relative;
-        }
+        .customer-reviews-section { padding: 80px 5%; background: #050505; border-top: 1px solid var(--border-color); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+        .review-card { background: #0A0A0A; border: 1px solid var(--border-color); padding: 30px; border-radius: 8px; transition: 0.3s; position: relative; }
         .review-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .user-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; background: #222; }
         .user-meta { display: flex; flex-direction: column; }
         .user-name { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: #fff; }
         .user-handle { font-size: 0.7rem; color: var(--gold); }
         .review-content { font-size: 0.85rem; color: #ccc; font-style: italic; line-height: 1.6; }
-        .star-rating { color: var(--gold); font-size: 0.7rem; margin-bottom: 10px; display: block; }
 
-        .economic-section {
-            padding: 80px 5%;
-            background: #050505;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-        .gold-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .promo-subtitle {
-            font-family: var(--font-display);
-            color: #fff;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            margin-bottom: 40px;
-        }
-        .economic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .eco-card {
-            background: #0A0A0A;
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 4px;
-            transition: 0.3s;
-            text-align: left;
-        }
+        .economic-section { padding: 80px 5%; background: #050505; text-align: center; border-top: 1px solid var(--border-color); }
+        .gold-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.5rem); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; text-transform: uppercase; }
+        .promo-subtitle { font-family: var(--font-display); color: #fff; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 40px; }
+        .economic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .eco-card { background: #0A0A0A; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; transition: 0.3s; text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
         .eco-card:hover { border-color: var(--gold); transform: scale(1.02); }
-        .eco-amount { font-family: var(--font-display); font-size: 1.4rem; color: #fff; margin-bottom: 5px; border-bottom: 1px solid #1A1A1A; padding-bottom: 10px; }
+        .eco-amount { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin-bottom: 5px; border-bottom: 1px solid #1A1A1A; padding-bottom: 10px; }
         .eco-price { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); font-weight: 900; margin: 10px 0; }
-        .eco-details { list-style: none; margin-top: 15px; }
+        .eco-details { list-style: none; margin-top: 15px; flex-grow: 1; margin-bottom: 20px; }
         .eco-details li { font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-        .eco-details li::before { content: "•"; color: var(--gold); font-weight: bold; }
+        .eco-details li::before { content: "-"; color: var(--gold); font-weight: bold; }
 
-        .btn-contact-yellow {
-            background: var(--gold);
-            color: #000;
-            padding: 20px 50px;
-            font-family: var(--font-display);
-            font-weight: 900;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 2px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
-            transition: 0.3s;
-        }
+        .btn-eco-order { background: var(--gold); color: #000; padding: 12px; font-family: var(--font-display); font-weight: 900; text-decoration: none; text-align: center; border-radius: 2px; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; transition: 0.3s; }
+        .btn-eco-order:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        .btn-contact-yellow { background: var(--gold); color: #000; padding: 20px 50px; font-family: var(--font-display); font-weight: 900; text-decoration: none; display: inline-block; border-radius: 2px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255,215,0,0.2); transition: 0.3s; }
 
         .faq-section { padding: 80px 5%; background: #000; border-top: 1px solid var(--border-color); }
         .faq-item { border-bottom: 1px solid var(--border-color); padding: 25px 0; }
@@ -394,55 +278,69 @@
         .contact-section { padding: 100px 5%; background: #050505; text-align: center; border-top: 1px solid var(--border-color); }
         .contact-link { border: 1px solid var(--border-color); padding: 20px 40px; color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; margin: 10px; display: inline-block; font-family: var(--font-display); font-size: 0.7rem; }
         .contact-link:hover { border-color: var(--gold); color: var(--gold); }
-        
         .footer-desc { color: #888; max-width: 600px; margin: 0 auto 30px; font-size: 0.9rem; line-height: 1.6; }
         .mail-link { color: var(--gold); font-family: var(--font-display); font-size: 0.8rem; text-decoration: none; display: block; margin-top: 10px; }
-        .btn-support { 
-            background: transparent; 
-            border: 1px solid #333; 
-            color: #fff; 
-            padding: 15px 30px; 
-            font-family: var(--font-display); 
-            font-size: 0.65rem; 
-            text-transform: uppercase; 
-            text-decoration: none; 
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
+        .btn-support { background: transparent; border: 1px solid #333; color: #fff; padding: 15px 30px; font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; text-decoration: none; letter-spacing: 2px; display: inline-block; margin-top: 20px; transition: 0.3s; }
         .btn-support:hover { background: #fff; color: #000; border-color: #fff; }
 
         footer { padding: 80px 5%; text-align: center; color: #555; font-size: 0.65rem; letter-spacing: 2px; font-family: var(--font-display); border-top: 1px solid var(--border-color); font-weight: 600; }
 
         @media (max-width: 768px) {
-            .hero .new { font-size: 4.5rem; }
-            .infrastructure-hero { padding-top: 160px; }
-            .nav-right { flex-direction: column; align-items: flex-end; gap: 10px; }
-            header { padding: 15px 5%; }
+            header { padding: 10px 3%; min-height: 70px; }
             .logo-wrap { gap: 10px; }
-            .logo-km { width: 38px; height: 38px; font-size: 0.9rem; }
-            .main-hero-title { font-size: 1.8rem; }
+            .logo-km { width: 36px; height: 36px; font-size: 0.85rem; }
+            .logo-text { font-size: 0.9rem; }
+            .logo-subtitle { font-size: 0.5rem; }
+            .nav-right { flex-direction: column; align-items: flex-end; gap: 5px; }
+            .hero .new { font-size: 4.5rem; }
+            .infrastructure-hero { padding-top: 180px; } 
+            .main-hero-title { font-size: 1.5rem; }
             .timer-val { font-size: 1.8rem; }
             .infra-title { font-size: 1.2rem; }
+            #dynamic-notif { right: 10px; left: 10px; bottom: 20px; max-width: none; }
         }
     </style>
 </head>
 <body>
 
+<div id="dynamic-notif">
+    <div class="notif-icon-circle" id="notif-icon">!</div>
+    <div class="notif-content">
+        <span class="notif-title" id="notif-type">Canlı Takip</span>
+        <p class="notif-desc" id="notif-message">Şu an 142 kişi bu sayfada aktif.</p>
+        <span class="notif-time" id="notif-time">şimdi</span>
+    </div>
+</div>
+
 <div id="about-modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeWho()">×</span>
-        <h2 class="modal-title">SELAM, BEN SEZER!</h2>
+        <span class="close-modal" onclick="closeWho()">x</span>
+        <h2 class="modal-title">SELAM, BEN SEZER KÜLCÜ</h2>
         <p style="color: #ccc; font-size: 1rem; line-height: 1.8; font-weight: 400;">
             23 yaşındayım ve bu işin mutfağından geliyorum. Sektördeki o kağnı hızıyla çalışan, sizi günlerce bekleten yavaş sistemleri profesyonel ekibimizle beraber geriye ittik. <br><br>
-            Külcü Medya'yı kurarken tek bir amacım vardı: <strong>Hız ve Prestij.</strong> Kendi yazdığımız özel altyapılar sayesinde saniyelerle yarışıyoruz. Bizde "beklemek" diye bir kelime yok. Eğer profilini zirveye taşımak istiyorsan, doğru adamın yanındasın.
+            Külcü Medya'yı kurarken tek bir amacım vardı: <strong>Hız ve Prestij.</strong> Kendi yazdığımız özel altyapılar sayesinde saniyelerle yarışıyoruz. Bizde beklemek diye bir kelime yok. Eğer profilini zirveye taşımak istiyorsan, doğru adamın yanındasın.
         </p>
     </div>
 </div>
 
+<div id="lesson-modal">
+    <div class="lesson-card">
+        <span class="close-modal" onclick="closeLesson()">x</span>
+        <h2 class="lesson-header">YAZILIM VE PHP DERSLERİ</h2>
+        <p class="lesson-text">
+            Selam, ben Sezer Külcü. Yazılım dünyası dışarıdan bakıldığında sadece birkaç satır kod gibi görünür; ama işin içine girdiğinde o uykusuz geceler, bitmek bilmeyen hata mesajları ve karmaşık algoritmalar adamı yorar. Ben bu yollarda 5 yılımı devirdim; nerede tıkanacağını, hangi hatanın seni pes ettirme noktasına getireceğini çok iyi biliyorum. Bu işin kurdu olmak, o hatalar arasında kaybolmak değil, onlara profesyonelce hükmetmektir.
+            <br><br>
+            Sana her şeyin çok kolay olduğu yalanını söyleyemem; ama 5 yıllık tecrübemle o zorlukları nasıl en hızlı şekilde aşacağını ve profesyonel bir yazılımcı gibi düşünmeyi öğretebilirim. Senin tek başına aylarca debelenerek öğreneceğin her şeyi, ben sana en kestirme ve en doğru yoldan aktarıyorum. Bu süreç profesyonel bir eğitim olduğu için ücretlidir.
+        </p>
+        <div class="price-badge">PROFESYONEL EĞİTİM | ÜCRETLİDİR</div>
+        <div style="margin-top: 10px;">
+            <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow" style="padding: 15px 30px; font-size: 0.7rem;">İLETİŞİME GEÇİN</a>
+        </div>
+    </div>
+</div>
+
 <div id="review-popup">
-    <span class="review-user" id="review-user">@mehmet_yılmaz</span>
+    <span class="review-user" id="review-user">@mehmet_yilmaz</span>
     <p class="review-msg" id="review-text">"Gerçekten 2 saniyede geldi, helal olsun!"</p>
 </div>
 
@@ -460,11 +358,14 @@
         </div>
     </a>
     <div class="nav-right">
-        <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ KİMDİR?</div>
+        <div class="btn-stack">
+            <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ KİMDİR?</div>
+            <div class="lesson-btn" onclick="openLesson()">Yazılım Ve PHP Dersleri</div>
+        </div>
         <div class="social-btns">
             <a href="https://www.instagram.com/darksezer06" target="_blank" class="ig-btn-nav">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                <svg class="ig-icon" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
                 Instagram
             </a>
@@ -472,7 +373,6 @@
     </div>
 </header>
 
-<!-- Yeni Altyapı Vurgu Bölümü -->
 <section class="infrastructure-hero">
     <div class="infra-badge">ÖZEL API TEKNOLOJİSİ</div>
     <h2 class="infra-title">RAKİPLERİMİZİ <span>GERİDE BIRAKTIK</span></h2>
@@ -499,29 +399,29 @@
 
 <section class="hero">
     <div class="image-text-block">
-        <div class="quality-badge">KALİTENİN TEK ADRESİ</div>
-        <h2 class="main-hero-title">SIRADANLIĞI UNUTUN, <span>PRESTİJİ SATIN ALIN.</span></h2>
-        <p class="hero-desc">
-            Diğer servislerin "yavaş" dünyasından sıkılmadınız mı? Külcü Medya, saniyelerle yarışan özel altyapısıyla hızı standart haline getirir. <strong>Kalite tesadüf değildir, bizdeki hızı kimse yakalayamaz.</strong>
+        <div class="quality-badge" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; border-radius: 50px; font-size: 0.6rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; display: inline-block;">KALİTENİN TEK ADRESİ</div>
+        <h2 class="main-hero-title" style="font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 15px;">SIRADANLIĞI UNUTUN, <span>PRESTİJİ SATIN ALIN.</span></h2>
+        <p class="hero-desc" style="color: #555; font-size: 0.9rem; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">
+            Diğer servislerin yavaş dünyasından sıkılmadınız mı? Külcü Medya, saniyelerle yarışan özel altyapısıyla hızı standart haline getirir. <strong>Kalite tesadüf değildir, bizdeki hızı kimse yakalayamaz.</strong>
         </p>
     </div>
 
-    <h3 style="color:var(--gold); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 15px; font-family: var(--font-display); font-weight: 900;">🔥 KAMPANYA SONA ERİYOR 🔥</h3>
+    <h3 style="color:var(--gold); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 15px; font-family: var(--font-display); font-weight: 900;">KAMPANYA SONA ERİYOR</h3>
     <h1>BU FİYATA YOK!<br>GÖRÜNCE İNANAMAYACAKSINIZ</h1>
     
     <div class="price-announcement">
         <span class="price-label-big">10.000</span>
         <span class="price-sub-label">TAKİPÇİ SADECE</span>
-        <span class="old-price">550₺</span>
+        <span class="old-price">550 TL</span>
     </div>
     
-    <div class="new">250₺</div>
+    <div class="new">250 TL</div>
 
     <div class="countdown-wrap">
         <div class="timer-grid">
-            <div class="timer-box"><span class="timer-val" id="hours">15</span><br><small>SAAT</small></div>
-            <div class="timer-box"><span class="timer-val" id="mins">00</span><br><small>DAKİKA</small></div>
-            <div class="timer-box"><span class="timer-val" id="secs">00</span><br><small>SANİYE</small></div>
+            <div class="timer-box"><span class="timer-val" id="hours">03</span><br><small>SAAT</small></div>
+            <div class="timer-box"><span class="timer-val" id="mins">04</span><br><small>DAKİKA</small></div>
+            <div class="timer-box"><span class="timer-val" id="secs">15</span><br><small>SANİYE</small></div>
         </div>
     </div>
 
@@ -532,59 +432,73 @@
 
 <section class="economic-section">
     <h2 class="gold-title">HER BÜTÇEYE UYGUN SERVİSLER</h2>
-    <p class="promo-subtitle">⚡️ BU FİYATA YOK ⚡️</p>
+    <p class="promo-subtitle">BU FİYATA YOK</p>
     
     <div class="economic-grid">
         <div class="eco-card">
-            <div class="eco-amount">150 TAKİPÇİ</div>
-            <div class="eco-price">25₺</div>
-            <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
-            </ul>
-        </div>
-        <div class="eco-card">
-            <div class="eco-amount">350 TAKİPÇİ</div>
-            <div class="eco-price">80₺</div>
-            <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
-            </ul>
-        </div>
-        <div class="eco-card">
             <div class="eco-amount">1000 TAKİPÇİ</div>
-            <div class="eco-price">250₺</div>
+            <div class="eco-price">50₺</div>
             <ul class="eco-details">
                 <li>Global Aktif Kullanıcılar</li>
                 <li>Şifre İstenmez</li>
                 <li>2 Saniyede Yüklenir</li>
                 <li>Külcü Medya Altyapısı</li>
             </ul>
+            <a href="https://www.shopier.com/43981135" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
+        </div>
+        <div class="eco-card">
+            <div class="eco-amount">1500 TAKİPÇİ</div>
+            <div class="eco-price">100₺</div>
+            <ul class="eco-details">
+                <li>Global Aktif Kullanıcılar</li>
+                <li>Şifre İstenmez</li>
+                <li>2 Saniyede Yüklenir</li>
+                <li>Külcü Medya Altyapısı</li>
+            </ul>
+            <a href="https://www.shopier.com/43981141" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
+        </div>
+        <div class="eco-card">
+            <div class="eco-amount">2000 TAKİPÇİ</div>
+            <div class="eco-price">150₺</div>
+            <ul class="eco-details">
+                <li>Global Aktif Kullanıcılar</li>
+                <li>Şifre İstenmez</li>
+                <li>2 Saniyede Yüklenir</li>
+                <li>Külcü Medya Altyapısı</li>
+            </ul>
+            <a href="https://www.shopier.com/43981154" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
+        </div>
+        <div class="eco-card">
+            <div class="eco-amount">2500 TAKİPÇİ</div>
+            <div class="eco-price">200₺</div>
+            <ul class="eco-details">
+                <li>Global Aktif Kullanıcılar</li>
+                <li>Şifre İstenmez</li>
+                <li>2 Saniyede Yüklenir</li>
+                <li>Külcü Medya Altyapısı</li>
+            </ul>
+            <a href="https://www.shopier.com/43981163" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
         </div>
     </div>
     
-    <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow">İLETİŞİME GEÇ @DARKSEZER06</a>
+    <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow">İLETİŞİME GEÇİN @DARKSEZER06</a>
 </section>
 
-<div style="padding: 0 5%; margin-top: 50px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi Paketleri 👑</h2></div>
+<div style="padding: 0 5%; margin-top: 50px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi Paketleri</h2></div>
 <section class="packages-container">
     <div class="pkg-card">
         <div>
             <h4>BAŞLANGIÇ</h4>
             <div class="pkg-amount">5.000+</div>
             <ul class="pkg-features">
-                <li>• Ödemeniz Onaylandıktan Sonra İşleme Alınır.</li>
-                <li>• Tamamlanma Süresi 1 Gün.</li>
-                <li>• 30 Gün Garantili Hizmettir.</li>
-                <li>• Aktif Kullanıcılar.</li>
-                <li>• Keşfete Düşmenize %100 Olanak Sağlar.</li>
+                <li>- Ödemeniz Onaylandıktan Sonra İşleme Alınır.</li>
+                <li>- Tamamlanma Süresi 1 Gün.</li>
+                <li>- 30 Gün Garantili Hizmettir.</li>
+                <li>- Aktif Kullanıcılar.</li>
+                <li>- Keşfete Düşmenize %100 Olanak Sağlar.</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43906729" target="_blank" class="btn-buy">2.500₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43906729" target="_blank" class="btn-buy">2.500 TL - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
@@ -593,14 +507,14 @@
             <h4>POPÜLER</h4>
             <div class="pkg-amount">25.000+</div>
             <ul class="pkg-features">
-                <li>• Işık Hızında Yükleme</li>
-                <li>• Yüksek Etkileşim Oranı</li>
-                <li>• Külcü Medya Altyapısı</li>
-                <li>• Hesap Prestij Garantisi</li>
-                <li>• Premium Destek Hattı</li>
+                <li>- Işık Hızında Yükleme</li>
+                <li>- Yüksek Etkileşim Oranı</li>
+                <li>- Külcü Medya Altyapısı</li>
+                <li>- Hesap Prestij Garantisi</li>
+                <li>- Premium Destek Hattı</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43906888" target="_blank" class="btn-buy">4.500₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43906888" target="_blank" class="btn-buy">4.500 TL - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
@@ -609,32 +523,32 @@
             <h4>KURUMSAL</h4>
             <div class="pkg-amount">50.000+</div>
             <ul class="pkg-features">
-                <li>• Özel Sunucu Önceliği</li>
-                <li>• Maxsimum Hız & Kalite</li>
-                <li>• Keşfet Etkili Altyapı</li>
-                <li>• 7/24 Birebir Asistan</li>
-                <li>• %100 Keşfet Destekli</li>
+                <li>- Özel Sunucu Önceliği</li>
+                <li>- Maksimum Hız ve Kalite</li>
+                <li>- Keşfet Etkili Altyapı</li>
+                <li>- 7/24 Birebir Asistan</li>
+                <li>- %100 Keşfet Destekli</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43906953" target="_blank" class="btn-buy">8.500₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43906953" target="_blank" class="btn-buy">8.500 TL - SATIN AL</a>
     </div>
 </section>
 
-<div style="padding: 0 5%; margin-top: 30px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Beğeni Paketleri ❤️</h2></div>
+<div style="padding: 0 5%; margin-top: 30px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Beğeni Paketleri</h2></div>
 <section class="packages-container">
     <div class="pkg-card">
         <div>
             <h4>BAŞLANGIÇ BEĞENİ</h4>
             <div class="pkg-amount">2.000+</div>
             <ul class="pkg-features">
-                <li>• Anlık Gönderim Başlar</li>
-                <li>• Şifresiz ve Güvenli</li>
-                <li>• Global Aktif Kullanıcılar</li>
-                <li>• Keşfet Etkileşimli</li>
-                <li>• %100 Güvenli Ödeme</li>
+                <li>- Anlık Gönderim Başlar</li>
+                <li>- Şifresiz ve Güvenli</li>
+                <li>- Global Aktif Kullanıcılar</li>
+                <li>- Keşfet Etkileşimli</li>
+                <li>- %100 Güvenli Ödeme</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43907943" target="_blank" class="btn-buy">105₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43907943" target="_blank" class="btn-buy">105 TL - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
@@ -643,14 +557,14 @@
             <h4>STANDART BEĞENİ</h4>
             <div class="pkg-amount">10.000+</div>
             <ul class="pkg-features">
-                <li>• Yüksek Kaliteli Profiller</li>
-                <li>• Işık Hızında Teslimat</li>
-                <li>• Profil Prestijini Artırır</li>
-                <li>• 30 Gün Telafi Garantisi</li>
-                <li>• Premium Külcü Medya Desteği</li>
+                <li>- Yüksek Kaliteli Profiller</li>
+                <li>- Işık Hızında Teslimat</li>
+                <li>- Profil Prestijini Artırır</li>
+                <li>- 30 Gün Telafi Garantisi</li>
+                <li>- Premium Külcü Medya Desteği</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43908027" target="_blank" class="btn-buy">350₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43908027" target="_blank" class="btn-buy">350 TL - SATIN AL</a>
     </div>
 
     <div class="pkg-card">
@@ -659,13 +573,13 @@
             <h4>PREMIUM BEĞENİ</h4>
             <div class="pkg-amount">50.000+</div>
             <ul class="pkg-features">
-                <li>• %100 Keşfet Etkili</li>
-                <li>• Külcü Medya Özel Sunucu</li>
-                <li>• 7/24 Destek Hattı</li>
-                <li>• Teslimat süresi 1-7 Gün</li>
+                <li>- %100 Keşfet Etkili</li>
+                <li>- Külcü Medya Özel Sunucu</li>
+                <li>- 7/24 Destek Hattı</li>
+                <li>- Teslimat süresi 1-7 Gün</li>
             </ul>
         </div>
-        <a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850₺ - SATIN AL</a>
+        <a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850 TL - SATIN AL</a>
     </div>
 </section>
 
@@ -677,9 +591,7 @@
     
     <div class="reviews-grid">
         <div class="review-card">
-            <span class="star-rating">★★★★★</span>
             <div class="user-info">
-                <img src="https://i.pravatar.cc/150?u=1" class="user-avatar" alt="Müşteri">
                 <div class="user-meta">
                     <span class="user-name">Mert Hakan</span>
                     <span class="user-handle">@merthakan_official</span>
@@ -688,9 +600,7 @@
             <p class="review-content">"Sezer Bey ile çalışmak gerçekten büyük ayrıcalık. Siparişi geçtim, 10k beğeni anında yüklendi."</p>
         </div>
         <div class="review-card">
-            <span class="star-rating">★★★★★</span>
             <div class="user-info">
-                <img src="https://i.pravatar.cc/150?u=2" class="user-avatar" alt="Müşteri">
                 <div class="user-meta">
                     <span class="user-name">Selin Yıldız</span>
                     <span class="user-handle">@selinyildizzz</span>
@@ -711,62 +621,55 @@
         <p class="faq-a">Asla. Bizim sistemimiz tamamen şifresiz çalışır. Sadece profil linkiniz yeterlidir.</p>
     </div>
     <div class="faq-item">
-        <p class="faq-q">Neden Külcü Medyayı Tercih Etmelisiniz?</p>
-        <p class="faq-a">Çünkü biz sadece "takipçi" satmıyoruz, size dijital bir prestij sunuyoruz. Diğer panellerin aksine, kendi yazdığımız özel API altyapımız sayesinde siparişleriniz saniyeler içinde işleme alınır.</p>
+        <p class="faq-q">NEDEN KÜLCÜ MEDYAYI TERCİH ETMELİSİNİZ?</p>
+        <p class="faq-a">Çünkü biz sadece takipçi satmıyoruz, size dijital bir prestij sunuyoruz. Diğer panellerin aksine, kendi yazdığımız özel API altyapımız sayesinde siparişleriniz saniyeler içinde işleme alınır.</p>
     </div>
 </section>
 
 <section class="contact-section">
     <h2 class="contact-title" style="font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 20px;">SİZİN İÇİN BURADAYIZ</h2>
-    <p class="footer-desc">
-        Hesabınızı bir sonraki seviyeye taşımak ve rakiplerinizin önüne geçmek için her adımda yanınızdayız.
-    </p>
+    <p class="footer-desc">Hesabınızı bir sonraki seviyeye taşımak ve rakiplerinizin önüne geçmek için her adımda yanınızdayız.</p>
     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <a href="https://www.instagram.com/darksezer06" target="_blank" class="contact-link">INSTAGRAM DM</a>
             <a href="mailto:kulcumedya@gmail.com" class="btn-support">DESTEK TALEBİ OLUŞTUR</a>
         </div>
-        <a href="mailto:kulcumedya@gmail.com" class="mail-link">@KULCUMEDYA@GMAIL.COM</a>
+        <a href="mailto:kulcumedya@gmail.com" class="mail-link">KULCUMEDYA@GMAIL.COM</a>
     </div>
 </section>
 
-<footer>
-    © 2021 KÜLCÜ MEDYA | SEZER KÜLCÜ
-</footer>
+<footer>(c) 2021 KÜLCÜ MEDYA | SEZER KÜLCÜ</footer>
 
 <script>
     function openWho() { document.getElementById('about-modal').style.display = 'flex'; }
     function closeWho() { document.getElementById('about-modal').style.display = 'none'; }
+    function openLesson() { document.getElementById('lesson-modal').style.display = 'flex'; }
+    function closeLesson() { document.getElementById('lesson-modal').style.display = 'none'; }
 
-    // 15 saatlik sayaç kurulumu
-    const durationInMs = 15 * 60 * 60 * 1000;
+    const durationInMs = (3 * 60 * 60 * 1000) + (4 * 60 * 1000) + (15 * 1000);
     const deadline = new Date().getTime() + durationInMs;
 
     function updateTimer() {
         const now = new Date().getTime();
         const t = deadline - now;
-        
         if (t <= 0) {
             document.getElementById("hours").innerHTML = "00";
             document.getElementById("mins").innerHTML = "00";
             document.getElementById("secs").innerHTML = "00";
             return;
         }
-
         const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
         const secs = Math.floor((t % (1000 * 60)) / 1000);
-
         document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
         document.getElementById("mins").innerHTML = mins < 10 ? "0" + mins : mins;
         document.getElementById("secs").innerHTML = secs < 10 ? "0" + secs : secs;
     }
-
     setInterval(updateTimer, 1000);
     updateTimer();
 
     const reviews = [
-        { u: "@mehmet_yılmaz", t: '"Gerçekten 2 saniyede geldi, helal olsun!"' },
+        { u: "@mehmet_yilmaz", t: '"Gerçekten 2 saniyede geldi, helal olsun!"' },
         { u: "@asli_demir", t: '"Şifresiz olması çok güven verici, teşekkürler."' },
         { u: "@can_luxury", t: '"Piyasadaki en hızlı servis, paketler çok kaliteli."' }
     ];
@@ -781,6 +684,36 @@
             setTimeout(() => revPop.classList.remove('show'), 5000);
         }
     }, 12000);
+
+    const notifNames = ["Emirhan", "Selin", "Burak", "Ayşe", "Mert", "Zeynep", "Volkan", "Gökhan", "Ece", "Yiğit"];
+    const notifPackages = ["10.000 Takipçi", "Popüler Paket", "VIP Kurumsal", "50.000 Beğeni", "1.000 Takipçi", "Başlangıç Paketi"];
+
+    function showDynamicNotif() {
+        const notifEl = document.getElementById('dynamic-notif');
+        const typeEl = document.getElementById('notif-type');
+        const msgEl = document.getElementById('notif-message');
+        const timeEl = document.getElementById('notif-time');
+        const mode = Math.floor(Math.random() * 3);
+        const randomName = notifNames[Math.floor(Math.random() * notifNames.length)];
+        const randomPkg = notifPackages[Math.floor(Math.random() * notifPackages.length)];
+        if (mode === 0) {
+            typeEl.innerText = "CANLI İSTATİSTİK";
+            msgEl.innerHTML = `Şu an <b>${Math.floor(Math.random() * (250 - 100) + 100)}</b> kişi bu sayfada aktif.`;
+        } else if (mode === 1) {
+            typeEl.innerText = "PAKET İNCELENİYOR";
+            msgEl.innerHTML = `<b>${randomName}</b> adlı kullanıcı <b>${randomPkg}</b> paketini inceliyor.`;
+        } else {
+            typeEl.innerText = "YENİ SİPARİŞ";
+            msgEl.innerHTML = `<b>${randomName}</b>, az önce <b>${randomPkg}</b> paketini satın aldı!`;
+        }
+        timeEl.innerText = "şimdi";
+        notifEl.classList.add('show');
+        setTimeout(() => { notifEl.classList.remove('show'); }, 6000);
+    }
+    setTimeout(() => {
+        showDynamicNotif();
+        setInterval(showDynamicNotif, 15000);
+    }, 3000);
 </script>
 
 </body>
