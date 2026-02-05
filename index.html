@@ -152,13 +152,56 @@
         }
         .ig-btn-nav:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
+        /* Yeni Altyapı Vurgu Başlığı */
+        .infrastructure-hero {
+            padding-top: 100px;
+            background: #080808;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .infra-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .infra-title {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        .infra-title span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .infra-sub {
+            color: #555;
+            font-size: 0.75rem;
+            margin-top: 5px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
         /* Stats Section */
-        .stats-top { padding-top: 160px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border-color); padding-left: 5%; padding-right: 5%; }
+        .stats-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border-color); padding-left: 5%; padding-right: 5%; }
         .stat-box { background: var(--dark-bg); padding: 40px 20px; text-align: center; }
         .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
         .stat-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; }
 
-        .hero { padding: 100px 5% 60px; text-align: center; }
+        .hero { padding: 80px 5% 60px; text-align: center; }
         .hero h1 { font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 2.5rem); margin-bottom: 20px; text-transform: uppercase; color: #fff; line-height: 1.4; }
         
         .price-announcement {
@@ -374,13 +417,14 @@
 
         @media (max-width: 768px) {
             .hero .new { font-size: 4.5rem; }
-            .stats-top { padding-top: 240px; }
+            .infrastructure-hero { padding-top: 160px; }
             .nav-right { flex-direction: column; align-items: flex-end; gap: 10px; }
             header { padding: 15px 5%; }
             .logo-wrap { gap: 10px; }
             .logo-km { width: 38px; height: 38px; font-size: 0.9rem; }
             .main-hero-title { font-size: 1.8rem; }
             .timer-val { font-size: 1.8rem; }
+            .infra-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -427,6 +471,13 @@
         </div>
     </div>
 </header>
+
+<!-- Yeni Altyapı Vurgu Bölümü -->
+<section class="infrastructure-hero">
+    <div class="infra-badge">ÖZEL API TEKNOLOJİSİ</div>
+    <h2 class="infra-title">RAKİPLERİMİZİ <span>GERİDE BIRAKTIK</span></h2>
+    <p class="infra-sub">Özel Külcü Medya Altyapısı ile Saniyelerle Yarışıyoruz</p>
+</section>
 
 <div class="stats-top">
     <div class="stat-box">
@@ -734,7 +785,4 @@
 
 </body>
 </html>
-
-
-
 
