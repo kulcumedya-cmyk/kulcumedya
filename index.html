@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Külcü Medya | Sezer Külcü - Premium Sosyal Medya Çözümleri</title>
+    <title>Külcü Medya | Sezer Külcü - PREMİUM Sosyal Medya Çözümleri</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -94,34 +94,32 @@
         .review-user { color: var(--gold); font-weight: 700; font-size: 0.7rem; margin-bottom: 5px; display: block; font-family: var(--font-display); }
         .review-msg { color: #eee; font-size: 0.8rem; font-weight: 300; }
 
-        #about-modal {
+        .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95);
             z-index: 2000; display: none; align-items: center; justify-content: center;
             padding: 20px;
         }
-        .modal-content {
-            background: #0A0A0A; border: 1px solid var(--gold);
-            padding: 40px; border-radius: 4px; max-width: 600px; position: relative;
-            text-align: center;
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--gold); font-size: 1.5rem; cursor: pointer; font-weight: 900; }
-        .modal-title { font-family: var(--font-display); color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
 
-        #lesson-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98);
-            z-index: 2001; display: none; align-items: center; justify-content: center;
-            padding: 20px;
+        .modal-content-box {
+            background: #0A0A0A; border: 1px solid var(--gold);
+            padding: 40px; border-radius: 8px; max-width: 600px; width: 100%; 
+            position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
         }
-        .lesson-card {
-            background: #0A0A0A; border: 2px solid var(--gold);
-            padding: 40px; border-radius: 8px; max-width: 600px; position: relative;
-            text-align: center; box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+
+        .close-modal-btn { 
+            position: absolute; top: 15px; right: 20px; 
+            color: var(--gold); font-size: 1.8rem; cursor: pointer; 
+            font-weight: 900; transition: 0.3s; z-index: 10;
         }
-        .lesson-header { font-family: var(--font-display); color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
-        .lesson-text { color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 25px; text-align: left; }
-        .price-badge { border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; font-weight: 900; font-size: 0.8rem; border-radius: 4px; margin-bottom: 20px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
+        .close-modal-btn:hover { transform: rotate(90deg); color: #fff; }
+
+        .modal-title-text { font-family: var(--font-display); color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
+
+        .modal-content-box::-webkit-scrollbar { width: 6px; }
+        .modal-content-box::-webkit-scrollbar-track { background: #000; }
+        .modal-content-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
         header {
             position: fixed; top: 0; width: 100%;
@@ -164,31 +162,16 @@
         .social-btns { display: flex; gap: 10px; }
         
         .ig-btn-nav { 
-            background: var(--instagram-gradient); 
-            color: #fff; 
-            padding: 10px 18px; 
-            border-radius: 6px; 
-            font-weight: 800; 
-            font-size: 0.65rem; 
-            text-decoration: none; 
-            text-transform: uppercase; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
-            font-family: var(--font-display);
+            background: var(--instagram-gradient); color: #fff; padding: 10px 18px; border-radius: 6px; 
+            font-weight: 800; font-size: 0.65rem; text-decoration: none; text-transform: uppercase; 
+            display: flex; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); font-family: var(--font-display);
         }
-        .ig-btn-nav:hover { 
-            transform: translateY(-2px) scale(1.05); 
-            filter: brightness(1.1); 
-            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5);
-        }
+        .ig-btn-nav:hover { transform: translateY(-2px) scale(1.05); filter: brightness(1.1); box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5); }
         .ig-icon { width: 16px; height: 16px; fill: currentColor; }
 
-        /* DÜZENLENEN BÖLÜM: PADDING ARTIRILDI */
         .infrastructure-hero { 
-            padding-top: 160px; 
+            padding-top: 180px; 
             background: #080808; 
             border-bottom: 1px solid var(--border-color); 
             text-align: center; 
@@ -293,7 +276,7 @@
             .logo-subtitle { font-size: 0.5rem; }
             .nav-right { flex-direction: column; align-items: flex-end; gap: 5px; }
             .hero .new { font-size: 4.5rem; }
-            .infrastructure-hero { padding-top: 180px; } 
+            .infrastructure-hero { padding-top: 190px; } 
             .main-hero-title { font-size: 1.5rem; }
             .timer-val { font-size: 1.8rem; }
             .infra-title { font-size: 1.2rem; }
@@ -306,33 +289,36 @@
 <div id="dynamic-notif">
     <div class="notif-icon-circle" id="notif-icon">!</div>
     <div class="notif-content">
-        <span class="notif-title" id="notif-type">Canlı Takip</span>
+        <span class="notif-title" id="notif-type">Canlı takip</span>
         <p class="notif-desc" id="notif-message">Şu an 142 kişi bu sayfada aktif.</p>
         <span class="notif-time" id="notif-time">şimdi</span>
     </div>
 </div>
 
-<div id="about-modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeWho()">x</span>
-        <h2 class="modal-title">SELAM, BEN SEZER KÜLCÜ</h2>
+<div id="about-modal" class="modal-overlay">
+    <div class="modal-content-box">
+        <span class="close-modal-btn" onclick="closeWho()">×</span>
+        <h2 class="modal-title-text">SELAM, BEN SEZER KÜLCÜ</h2>
         <p style="color: #ccc; font-size: 1rem; line-height: 1.8; font-weight: 400;">
             23 yaşındayım ve bu işin mutfağından geliyorum. Sektördeki o kağnı hızıyla çalışan, sizi günlerce bekleten yavaş sistemleri profesyonel ekibimizle beraber geriye ittik. <br><br>
-            Külcü Medya'yı kurarken tek bir amacım vardı: <strong>Hız ve Prestij.</strong> Kendi yazdığımız özel altyapılar sayesinde saniyelerle yarışıyoruz. Bizde beklemek diye bir kelime yok. Eğer profilini zirveye taşımak istiyorsan, doğru adamın yanındasın.
+            Külcü Medya'yı kurarken tek bir amacım vardı: <strong>Hız ve prestij.</strong> Kendi yazdığımız özel altyapılar sayesinde saniyelerle yarışıyoruz. Bizde beklemek diye bir kelime yok. Eğer profilini zirveye taşımak istiyorsan, doğru adamın yanındasın.
         </p>
     </div>
 </div>
 
-<div id="lesson-modal">
-    <div class="lesson-card">
-        <span class="close-modal" onclick="closeLesson()">x</span>
-        <h2 class="lesson-header">YAZILIM VE PHP DERSLERİ</h2>
-        <p class="lesson-text">
-            Selam, ben Sezer Külcü. Yazılım dünyası dışarıdan bakıldığında sadece birkaç satır kod gibi görünür; ama işin içine girdiğinde o uykusuz geceler, bitmek bilmeyen hata mesajları ve karmaşık algoritmalar adamı yorar. Ben bu yollarda 5 yılımı devirdim; nerede tıkanacağını, hangi hatanın seni pes ettirme noktasına getireceğini çok iyi biliyorum. Bu işin kurdu olmak, o hatalar arasında kaybolmak değil, onlara profesyonelce hükmetmektir.
-            <br><br>
-            Sana her şeyin çok kolay olduğu yalanını söyleyemem; ama 5 yıllık tecrübemle o zorlukları nasıl en hızlı şekilde aşacağını ve profesyonel bir yazılımcı gibi düşünmeyi öğretebilirim. Senin tek başına aylarca debelenerek öğreneceğin her şeyi, ben sana en kestirme ve en doğru yoldan aktarıyorum. Bu süreç profesyonel bir eğitim olduğu için ücretlidir.
-        </p>
-        <div class="price-badge">PROFESYONEL EĞİTİM | ÜCRETLİDİR</div>
+<div id="lesson-modal" class="modal-overlay">
+    <div class="modal-content-box">
+        <span class="close-modal-btn" onclick="closeLesson()">×</span>
+        <h2 class="modal-title-text" style="font-size: 1.5rem;">YAZILIM VE PHP DERSLERİ</h2>
+        <div style="text-align: left; margin-bottom: 25px;">
+            <p style="color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 15px;">
+                Selam, ben Sezer Külcü. Yazılım dünyası dışarıdan bakıldığında sadece birkaç satır kod gibi görünür; ama işin içine girdiğinde o uykusuz geceler, bitmek bilmeyen hata mesajları ve karmaşık algoritmalar adamı yorar. Ben bu yollarda 5 yılımı devirdim; nerede tıkanacağını, hangi hatanın seni pes ettirme noktasına getireceğini çok iyi biliyorum. Bu işin kurdu olmak, o hatalar arasında kaybolmak değil, onlara profesyonelce hükmetmektir.
+            </p>
+            <p style="color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 15px;">
+                Sana her şeyin çok kolay olduğu yalanını söyleyemem; ama 5 yıllık tecrübemle o zorlukları nasıl en hızlı şekilde aşacağını ve profesyonel bir yazılımcı gibi düşünmeyi öğretebilirim. Senin tek başına aylarca debelenerek öğreneceğin her şeyi, ben sana en kestirme ve en doğru yoldan aktarıyorum. Bu süreç profesyonel bir eğitim olduğu için ücretlidir.
+            </p>
+        </div>
+        <div style="border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-weight: 900; font-size: 0.8rem; border-radius: 4px; margin-bottom: 20px; display: inline-block; text-transform: uppercase; letter-spacing: 1px;">PROFESYONEL EĞİTİM | ÜCRETLİDİR</div>
         <div style="margin-top: 10px;">
             <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow" style="padding: 15px 30px; font-size: 0.7rem;">İLETİŞİME GEÇİN</a>
         </div>
@@ -354,12 +340,12 @@
         <div class="logo-km">KM</div>
         <div class="logo-text-group">
             <div class="logo-text">KÜLCÜ MEDYA</div>
-            <div class="logo-subtitle">5 Yıllık Deneyim | 2 Sn Hız | Uzman Ekip</div>
+            <div class="logo-subtitle">5 Yıllık Deneyim | 2 sn Hız | Uzman Ekip</div>
         </div>
     </a>
     <div class="nav-right">
         <div class="btn-stack">
-            <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ KİMDİR?</div>
+            <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ kİMDİR?</div>
             <div class="lesson-btn" onclick="openLesson()">Yazılım Ve PHP Dersleri</div>
         </div>
         <div class="social-btns">
@@ -391,7 +377,7 @@
         <div class="stat-label">MUTLU MÜŞTERİ</div>
     </div>
     <div class="stat-box">
-        <div class="stat-top-info"><span>PREMIUM</span> TESLİMAT SİSTEMİ</div>
+        <div class="stat-top-info"><span>PREMİUM</span> TESLİMAT SİSTEMİ</div>
         <div class="stat-val">2 SANİYE</div>
         <div class="stat-label">TESLİMAT HIZI</div>
     </div>
@@ -439,10 +425,10 @@
             <div class="eco-amount">1000 TAKİPÇİ</div>
             <div class="eco-price">50₺</div>
             <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
+                <li>Global aktif kullanıcılar</li>
+                <li>Şifre istenmez</li>
+                <li>2 saniyede yüklenir</li>
+                <li>Külcü Medya altyapısı</li>
             </ul>
             <a href="https://www.shopier.com/43981135" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
         </div>
@@ -450,10 +436,10 @@
             <div class="eco-amount">1500 TAKİPÇİ</div>
             <div class="eco-price">100₺</div>
             <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
+                <li>Global aktif kullanıcılar</li>
+                <li>Şifre istenmez</li>
+                <li>2 saniyede yüklenir</li>
+                <li>Külcü Medya altyapısı</li>
             </ul>
             <a href="https://www.shopier.com/43981141" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
         </div>
@@ -461,10 +447,10 @@
             <div class="eco-amount">2000 TAKİPÇİ</div>
             <div class="eco-price">150₺</div>
             <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
+                <li>Global aktif kullanıcılar</li>
+                <li>Şifre istenmez</li>
+                <li>2 saniyede yüklenir</li>
+                <li>Külcü Medya altyapısı</li>
             </ul>
             <a href="https://www.shopier.com/43981154" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
         </div>
@@ -472,10 +458,10 @@
             <div class="eco-amount">2500 TAKİPÇİ</div>
             <div class="eco-price">200₺</div>
             <ul class="eco-details">
-                <li>Global Aktif Kullanıcılar</li>
-                <li>Şifre İstenmez</li>
-                <li>2 Saniyede Yüklenir</li>
-                <li>Külcü Medya Altyapısı</li>
+                <li>Global aktif kullanıcılar</li>
+                <li>Şifre istenmez</li>
+                <li>2 saniyede yüklenir</li>
+                <li>Külcü Medya altyapısı</li>
             </ul>
             <a href="https://www.shopier.com/43981163" target="_blank" class="btn-eco-order">SİPARİŞ VER</a>
         </div>
@@ -484,18 +470,18 @@
     <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow">İLETİŞİME GEÇİN @DARKSEZER06</a>
 </section>
 
-<div style="padding: 0 5%; margin-top: 50px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi Paketleri</h2></div>
+<div style="padding: 0 5%; margin-top: 50px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi paketleri 👑🚀</h2></div>
 <section class="packages-container">
     <div class="pkg-card">
         <div>
             <h4>BAŞLANGIÇ</h4>
             <div class="pkg-amount">5.000+</div>
             <ul class="pkg-features">
-                <li>- Ödemeniz Onaylandıktan Sonra İşleme Alınır.</li>
-                <li>- Tamamlanma Süresi 1 Gün.</li>
-                <li>- 30 Gün Garantili Hizmettir.</li>
-                <li>- Aktif Kullanıcılar.</li>
-                <li>- Keşfete Düşmenize %100 Olanak Sağlar.</li>
+                <li>- Ödemeniz onaylandıktan sonra işleme alınır.</li>
+                <li>- Tamamlanma süresi 3 dakika.</li>
+                <li>- 30 gün garantili hizmettir.</li>
+                <li>- aktif kullanıcılar.</li>
+                <li>- Keşfete düşmenize %100 olanak sağlar.</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43906729" target="_blank" class="btn-buy">2.500 TL - SATIN AL</a>
@@ -507,11 +493,11 @@
             <h4>POPÜLER</h4>
             <div class="pkg-amount">25.000+</div>
             <ul class="pkg-features">
-                <li>- Işık Hızında Yükleme</li>
-                <li>- Yüksek Etkileşim Oranı</li>
-                <li>- Külcü Medya Altyapısı</li>
-                <li>- Hesap Prestij Garantisi</li>
-                <li>- Premium Destek Hattı</li>
+                <li>- Işık hızında yükleme</li>
+                <li>- Yüksek etkileşim oranı</li>
+                <li>- Külcü Medya altyapısı</li>
+                <li>- Hesap prestij garantisi</li>
+                <li>- PREMİUM destek hattı</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43906888" target="_blank" class="btn-buy">4.500 TL - SATIN AL</a>
@@ -523,29 +509,29 @@
             <h4>KURUMSAL</h4>
             <div class="pkg-amount">50.000+</div>
             <ul class="pkg-features">
-                <li>- Özel Sunucu Önceliği</li>
-                <li>- Maksimum Hız ve Kalite</li>
-                <li>- Keşfet Etkili Altyapı</li>
-                <li>- 7/24 Birebir Asistan</li>
-                <li>- %100 Keşfet Destekli</li>
+                <li>- Özel sunucu önceliği</li>
+                <li>- Maksimum hız ve kalite</li>
+                <li>- Keşfet etkili altyapı</li>
+                <li>- 7/24 birebir asistan</li>
+                <li>- %100 keşfet destekli</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43906953" target="_blank" class="btn-buy">8.500 TL - SATIN AL</a>
     </div>
 </section>
 
-<div style="padding: 0 5%; margin-top: 30px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Beğeni Paketleri</h2></div>
+<div style="padding: 0 5%; margin-top: 30px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Beğeni paketleri ❤️🚀</h2></div>
 <section class="packages-container">
     <div class="pkg-card">
         <div>
             <h4>BAŞLANGIÇ BEĞENİ</h4>
             <div class="pkg-amount">2.000+</div>
             <ul class="pkg-features">
-                <li>- Anlık Gönderim Başlar</li>
-                <li>- Şifresiz ve Güvenli</li>
-                <li>- Global Aktif Kullanıcılar</li>
-                <li>- Keşfet Etkileşimli</li>
-                <li>- %100 Güvenli Ödeme</li>
+                <li>- Anlık gönderim başlar</li>
+                <li>- Şifresiz ve güvenli</li>
+                <li>- Global aktif kullanıcılar</li>
+                <li>- Keşfet etkileşimli</li>
+                <li>- %100 güvenli ödeme</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43907943" target="_blank" class="btn-buy">105 TL - SATIN AL</a>
@@ -557,11 +543,11 @@
             <h4>STANDART BEĞENİ</h4>
             <div class="pkg-amount">10.000+</div>
             <ul class="pkg-features">
-                <li>- Yüksek Kaliteli Profiller</li>
-                <li>- Işık Hızında Teslimat</li>
-                <li>- Profil Prestijini Artırır</li>
-                <li>- 30 Gün Telafi Garantisi</li>
-                <li>- Premium Külcü Medya Desteği</li>
+                <li>- Yüksek kaliteli profiller</li>
+                <li>- Işık hızında teslimat</li>
+                <li>- Profil prestijini artırır</li>
+                <li>- 30 gün telafi garantisi</li>
+                <li>- PREMİUM Külcü Medya desteği</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43908027" target="_blank" class="btn-buy">350 TL - SATIN AL</a>
@@ -570,13 +556,13 @@
     <div class="pkg-card">
         <div class="pkg-badge">ULTRA VIP</div>
         <div>
-            <h4>PREMIUM BEĞENİ</h4>
+            <h4>PREMİUM BEĞENİ</h4>
             <div class="pkg-amount">50.000+</div>
             <ul class="pkg-features">
-                <li>- %100 Keşfet Etkili</li>
-                <li>- Külcü Medya Özel Sunucu</li>
-                <li>- 7/24 Destek Hattı</li>
-                <li>- Teslimat süresi 1-7 Gün</li>
+                <li>- %100 keşfet etkili</li>
+                <li>- Külcü Medya özel sunucu</li>
+                <li>- 7/24 destek hattı</li>
+                <li>- Teslimat süresi 1-7 gün</li>
             </ul>
         </div>
         <a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850 TL - SATIN AL</a>
@@ -597,7 +583,7 @@
                     <span class="user-handle">@merthakan_official</span>
                 </div>
             </div>
-            <p class="review-content">"Sezer Bey ile çalışmak gerçekten büyük ayrıcalık. Siparişi geçtim, 10k beğeni anında yüklendi."</p>
+            <p class="review-content">"Sezer bey ile çalışmak gerçekten büyük ayrıcalık. Siparişi geçtim, 10k beğeni anında yüklendi."</p>
         </div>
         <div class="review-card">
             <div class="user-info">
@@ -606,7 +592,7 @@
                     <span class="user-handle">@selinyildizzz</span>
                 </div>
             </div>
-            <p class="review-content">"Butiğim için toplu takipçi ve beğeni aldım. Sezer Bey her soruma anında yanıt verdi."</p>
+            <p class="review-content">"Butiğim için toplu takipçi ve beğeni aldım. Sezer bey her soruma anında yanıt verdi."</p>
         </div>
     </div>
 </section>
@@ -686,7 +672,7 @@
     }, 12000);
 
     const notifNames = ["Emirhan", "Selin", "Burak", "Ayşe", "Mert", "Zeynep", "Volkan", "Gökhan", "Ece", "Yiğit"];
-    const notifPackages = ["10.000 Takipçi", "Popüler Paket", "VIP Kurumsal", "50.000 Beğeni", "1.000 Takipçi", "Başlangıç Paketi"];
+    const notifPackages = ["10.000 Takipçi", "Popüler paket", "VIP Kurumsal", "50.000 Beğeni", "1.000 Takipçi", "Başlangıç paketi"];
 
     function showDynamicNotif() {
         const notifEl = document.getElementById('dynamic-notif');
@@ -696,6 +682,7 @@
         const mode = Math.floor(Math.random() * 3);
         const randomName = notifNames[Math.floor(Math.random() * notifNames.length)];
         const randomPkg = notifPackages[Math.floor(Math.random() * notifPackages.length)];
+        
         if (mode === 0) {
             typeEl.innerText = "CANLI İSTATİSTİK";
             msgEl.innerHTML = `Şu an <b>${Math.floor(Math.random() * (250 - 100) + 100)}</b> kişi bu sayfada aktif.`;
@@ -706,10 +693,12 @@
             typeEl.innerText = "YENİ SİPARİŞ";
             msgEl.innerHTML = `<b>${randomName}</b>, az önce <b>${randomPkg}</b> paketini satın aldı!`;
         }
+        
         timeEl.innerText = "şimdi";
         notifEl.classList.add('show');
         setTimeout(() => { notifEl.classList.remove('show'); }, 6000);
     }
+    
     setTimeout(() => {
         showDynamicNotif();
         setInterval(showDynamicNotif, 15000);
