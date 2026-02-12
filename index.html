@@ -30,6 +30,7 @@
             overflow-x: hidden;
         }
 
+        /* DYNAMIC NOTIFICATION */
         #dynamic-notif {
             position: fixed;
             bottom: 25px;
@@ -42,9 +43,7 @@
             padding: 15px 20px;
             border-radius: 8px;
             display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 10000;
+            align-items: center; gap: 15px; z-index: 10000;
             transform: translateX(150%);
             transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -52,10 +51,7 @@
         }
         #dynamic-notif.show { transform: translateX(0); }
         .notif-icon-circle {
-            width: 45px;
-            height: 45px;
-            background: #111;
-            border-radius: 50%;
+            width: 45px; height: 45px; background: #111; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0; border: 1px solid #333;
         }
@@ -68,64 +64,56 @@
         .notif-desc { font-size: 0.8rem; color: #fff; line-height: 1.3; }
         .notif-time { font-size: 0.65rem; color: #555; display: block; margin-top: 5px; }
 
-        #notification-toast {
-            position: fixed; bottom: 20px; left: 20px;
-            background: rgba(10, 10, 10, 0.98);
-            border: 1px solid var(--gold);
-            padding: 15px 20px; border-radius: 4px;
-            display: flex; align-items: center; gap: 12px;
-            z-index: 9999; transform: translateY(200%);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 30px rgba(255,215,0,0.15);
-        }
-        #notification-toast.show { transform: translateY(0); }
-        .toast-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
-        .toast-text { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; }
-
+        /* TOAST & REVIEW POPUPS */
         #review-popup {
             position: fixed; bottom: 100px; left: 20px;
-            background: #0A0A0A; border: 1px solid #222;
-            padding: 15px; border-radius: 4px;
-            max-width: 280px; z-index: 9998;
-            transform: translateX(-150%);
-            transition: 0.6s ease;
+            background: #0A0A0A; border: 1px solid #222; padding: 15px; border-radius: 4px;
+            max-width: 280px; z-index: 9998; transform: translateX(-150%); transition: 0.6s ease;
         }
         #review-popup.show { transform: translateX(0); }
         .review-user { color: var(--gold); font-weight: 700; font-size: 0.7rem; margin-bottom: 5px; display: block; font-family: var(--font-display); }
         .review-msg { color: #eee; font-size: 0.8rem; font-weight: 300; }
 
+        /* MODAL OVERLAY */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000; display: none; align-items: center; justify-content: center;
-            padding: 20px;
+            background: rgba(0,0,0,0.85); z-index: 2000; display: none; align-items: center; justify-content: center;
+            padding: 20px; backdrop-filter: blur(5px);
         }
 
+        /* KAYAR PANEL (RISK POPUP) */
+        .side-panel {
+            position: fixed; top: 0; right: 0; width: 450px; height: 100%;
+            background: #0A0A0A; border-left: 2px solid #ff4444; z-index: 3000;
+            transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column; box-shadow: -10px 0 50px rgba(0,0,0,0.8);
+            max-width: 100%;
+        }
+        .side-panel.show { transform: translateX(0); }
+        .side-panel-content { padding: 40px; overflow-y: auto; flex-grow: 1; }
+        .side-panel-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); z-index: 2999; display: none; backdrop-filter: blur(3px);
+        }
+
+        /* STANDARD MODAL BOX (FOR WHO IS SEZER) */
         .modal-content-box {
-            background: #0A0A0A; border: 1px solid var(--gold);
-            padding: 40px; border-radius: 8px; max-width: 600px; width: 100%; 
-            position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+            background: #0A0A0A; border: 1px solid var(--gold); padding: 40px; border-radius: 8px;
+            max-width: 600px; width: 100%; position: relative; text-align: center;
+            max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
         }
 
-        .close-modal-btn { 
-            position: absolute; top: 15px; right: 20px; 
-            color: var(--gold); font-size: 1.8rem; cursor: pointer; 
-            font-weight: 900; transition: 0.3s; z-index: 10;
+        .close-btn { 
+            position: absolute; top: 20px; right: 25px; color: #ff4444; font-size: 1.8rem;
+            cursor: pointer; font-weight: 900; transition: 0.3s; z-index: 10;
         }
-        .close-modal-btn:hover { transform: rotate(90deg); color: #fff; }
+        .close-btn:hover { transform: rotate(90deg); color: #fff; }
 
-        .modal-title-text { font-family: var(--font-display); color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
-
+        /* HEADER */
         header {
-            position: fixed; top: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; 
-            background: rgba(0,0,0,0.98);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            min-height: 80px;
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); z-index: 1000;
+            border-bottom: 1px solid var(--border-color); min-height: 80px;
         }
 
         .logo-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
@@ -152,8 +140,8 @@
         .who-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); text-align: center; transition: 0.3s; }
         .who-btn:hover { background: rgba(255, 215, 0, 0.1); }
         
-        .lesson-btn { background: var(--gold); color: #000; padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); border: 1px solid var(--gold); text-align: center; text-decoration: none; transition: 0.3s; }
-        .lesson-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
+        .risk-btn { background: #ff4444; color: #fff; padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); border: 1px solid #ff4444; text-align: center; transition: 0.3s; }
+        .risk-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
         
         .ig-btn-nav { 
             background: var(--instagram-gradient); color: #fff; padding: 10px 18px; border-radius: 6px; 
@@ -161,11 +149,11 @@
             display: flex; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3); font-family: var(--font-display);
         }
-        .ig-btn-nav:hover { transform: translateY(-2px) scale(1.05); filter: brightness(1.1); box-shadow: 0 6px 20px rgba(220, 39, 67, 0.5); }
-        .ig-icon { width: 16px; height: 16px; fill: currentColor; }
+        .ig-btn-nav:hover { transform: translateY(-2px) scale(1.05); filter: brightness(1.1); }
 
+        /* HERO & INFRASTRUCTURE */
         .infrastructure-hero { padding-top: 180px; background: #080808; border-bottom: 1px solid var(--border-color); text-align: center; padding-bottom: 30px; }
-        .infra-badge { display: inline-block; background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 25px; letter-spacing: 2px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.1); }
+        .infra-badge { display: inline-block; background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 25px; letter-spacing: 2px; }
         .infra-title { font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; }
         .infra-title span { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .infra-sub { color: #555; font-size: 0.75rem; margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
@@ -175,6 +163,7 @@
         .stat-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
         .stat-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; }
 
+        /* HERO SECTION */
         .hero { padding: 80px 5% 60px; text-align: center; }
         .hero h1 { font-family: var(--font-display); font-size: clamp(1.2rem, 4vw, 2.5rem); margin-bottom: 20px; text-transform: uppercase; color: #fff; line-height: 1.4; }
         .price-announcement { margin-bottom: 20px; font-family: var(--font-display); text-transform: uppercase; }
@@ -188,82 +177,77 @@
         .timer-val { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--gold); }
         .timer-box small { letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
 
-        .btn-gold-promo { background: var(--gold); color: #000; display: inline-block; width: 100%; max-width: 450px; padding: 25px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); transition: transform 0.3s, box-shadow 0.3s; font-family: var(--font-display); }
+        .btn-gold-promo { background: var(--gold); color: #000; display: inline-block; width: 100%; max-width: 450px; padding: 25px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); transition: 0.3s; font-family: var(--font-display); }
         .btn-gold-promo:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
 
+        /* PACKAGES */
         .packages-container { padding: 40px 5% 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; background: #000; }
         .pkg-card { background: var(--gold); padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 4px; transition: 0.3s; color: #000; position: relative; }
         .pkg-card:hover { transform: translateY(-10px); }
-        .pkg-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #000; color: var(--gold); padding: 8px 25px; border: 2px solid var(--gold); font-family: var(--font-display); font-size: 0.6rem; font-weight: 900; white-space: nowrap; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,215,0,0.3); z-index: 10; }
+        .pkg-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #000; color: var(--gold); padding: 8px 25px; border: 2px solid var(--gold); font-family: var(--font-display); font-size: 0.6rem; font-weight: 900; border-radius: 50px; z-index: 10; }
         .pkg-card h4 { font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 10px; font-weight: 800; letter-spacing: 1px; }
         .pkg-amount { font-family: var(--font-display); font-size: 3rem; font-weight: 900; margin: 10px 0; letter-spacing: -2px; }
         .pkg-features { list-style: none; margin: 30px 0; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.1); }
         .pkg-features li { font-size: 0.75rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 900; line-height: 1.3; font-family: var(--font-main); display: flex; align-items: flex-start; gap: 5px; }
         .btn-buy { background: #000; color: var(--gold); display: block; width: 100%; padding: 22px; border-radius: 2px; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-display); }
 
+        /* VIP SERVICES */
         .vip-service-card { background: #0A0A0A; border: 1px solid #222; padding: 35px; border-radius: 8px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: 0.3s; }
-        .vip-service-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1); }
+        .vip-service-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         .vip-card-title { font-family: var(--font-display); font-size: 0.9rem; color: #fff; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
         .vip-card-sub { font-size: 0.85rem; color: #888; margin-bottom: 25px; line-height: 1.6; }
         .vip-limited-badge { position: absolute; top: 15px; right: 15px; background: var(--gold-gradient); color: #000; padding: 4px 10px; font-size: 0.55rem; font-weight: 900; font-family: var(--font-display); border-radius: 2px; text-transform: uppercase; animation: pulse-gold 2s infinite; }
-        @keyframes pulse-gold { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         .btn-vip-action { background: var(--gold); color: #000; text-align: center; padding: 15px; font-family: var(--font-display); font-weight: 900; font-size: 0.7rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; transition: 0.3s; }
-        .btn-vip-action:hover { filter: brightness(1.2); letter-spacing: 2px; }
 
-        .critical-warning-box { background: rgba(255, 0, 0, 0.03); border: 1px solid rgba(255, 0, 0, 0.2); padding: 30px; border-radius: 8px; margin: 40px 5%; text-align: left; }
-        .warning-title { color: #ff4444; font-family: var(--font-display); font-weight: 900; font-size: 1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        /* RISK PANEL SPECIFIC STYLES */
+        .risk-panel-title { font-family: var(--font-display); color: #ff4444; margin-bottom: 30px; font-size: 1.2rem; line-height: 1.4; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .risk-text-p { color: #ccc; line-height: 1.8; font-size: 0.95rem; margin-bottom: 20px; text-align: left; }
+        .risk-box-item { margin-bottom: 25px; padding-left: 15px; border-left: 2px solid #ff4444; }
+        .risk-box-title { color: #fff; font-weight: 800; font-size: 0.85rem; display: block; margin-bottom: 5px; text-transform: uppercase; font-family: var(--font-display); }
+        .risk-box-desc { color: #888; font-size: 0.9rem; display: block; line-height: 1.6; }
+        
+        .accept-container { 
+            display: flex; align-items: flex-start; gap: 12px; 
+            margin-top: 35px; padding: 20px; background: rgba(255, 68, 68, 0.05); 
+            border: 1px dashed #ff4444; border-radius: 4px;
+        }
+        .accept-label { color: #fff; font-size: 0.8rem; font-weight: 700; cursor: pointer; font-family: var(--font-display); line-height: 1.4; }
+        .accept-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: #ff4444; flex-shrink: 0; margin-top: 2px; }
 
-        .economic-section { padding: 80px 5%; background: #050505; text-align: center; border-top: 1px solid var(--border-color); }
-        .gold-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.5rem); background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; text-transform: uppercase; }
-        .promo-subtitle { font-family: var(--font-display); color: #fff; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 40px; }
-        .economic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .eco-card { background: #0A0A0A; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; transition: 0.3s; text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
-        .eco-card:hover { border-color: var(--gold); transform: scale(1.02); }
-        .eco-amount { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin-bottom: 5px; border-bottom: 1px solid #1A1A1A; padding-bottom: 10px; }
-        .eco-price { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); font-weight: 900; margin: 10px 0; }
-        .eco-details { list-style: none; margin-top: 15px; flex-grow: 1; margin-bottom: 20px; }
-        .eco-details li { font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-        .eco-details li::before { content: "-"; color: var(--gold); font-weight: bold; }
-        .btn-eco-order { background: var(--gold); color: #000; padding: 12px; font-family: var(--font-display); font-weight: 900; text-decoration: none; text-align: center; border-radius: 2px; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; transition: 0.3s; }
+        .btn-confirm-risk { 
+            background: #ff4444; color: #fff; width: 100%; padding: 20px; 
+            font-family: var(--font-display); font-weight: 900; border: none; 
+            text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;
+            margin-top: 20px; cursor: not-allowed; opacity: 0.5; transition: 0.3s;
+        }
+        .btn-confirm-risk.active { opacity: 1; cursor: pointer; box-shadow: 0 10px 20px rgba(255, 68, 68, 0.3); }
 
-        .customer-reviews-section { padding: 80px 5%; background: #050505; border-top: 1px solid var(--border-color); }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-        .review-card { background: #0A0A0A; border: 1px solid var(--border-color); padding: 30px; border-radius: 8px; transition: 0.3s; position: relative; }
-        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .user-meta { display: flex; flex-direction: column; }
-        .user-name { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: #fff; }
-        .user-handle { font-size: 0.7rem; color: var(--gold); }
-        .review-content { font-size: 0.85rem; color: #ccc; font-style: italic; line-height: 1.6; }
-
-        .btn-contact-yellow { background: var(--gold); color: #000; padding: 20px 50px; font-family: var(--font-display); font-weight: 900; text-decoration: none; display: inline-block; border-radius: 2px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255,215,0,0.2); transition: 0.3s; }
-
+        /* FAQ & CONTACT */
         .faq-section { padding: 80px 5%; background: #000; border-top: 1px solid var(--border-color); }
-        .faq-title-main { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); margin-bottom: 40px; text-align: center; letter-spacing: 2px; }
+        .faq-title-main { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); margin-bottom: 40px; text-align: center; }
         .faq-item { border-bottom: 1px solid var(--border-color); padding: 25px 0; }
-        .faq-q { font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 10px; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .faq-a { color: #888; font-size: 0.85rem; font-weight: 300; line-height: 1.6; padding-left: 20px; white-space: pre-line; }
+        .faq-q { font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 10px; cursor: pointer; text-transform: uppercase; font-weight: 700; }
+        .faq-a { color: #888; font-size: 0.85rem; line-height: 1.6; padding-left: 20px; white-space: pre-line; }
 
         .contact-section { padding: 100px 5%; background: #050505; text-align: center; border-top: 1px solid var(--border-color); }
         .contact-link { border: 1px solid var(--border-color); padding: 20px 40px; color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; margin: 10px; display: inline-block; font-family: var(--font-display); font-size: 0.7rem; }
-        .footer-desc { color: #888; max-width: 600px; margin: 0 auto 30px; font-size: 0.9rem; line-height: 1.6; }
-        .mail-link { color: var(--gold); font-family: var(--font-display); font-size: 0.8rem; text-decoration: none; display: block; margin-top: 10px; }
-        .btn-support { background: transparent; border: 1px solid #333; color: #fff; padding: 15px 30px; font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; text-decoration: none; letter-spacing: 2px; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn-support { background: transparent; border: 1px solid #333; color: #fff; padding: 15px 30px; font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 20px; transition: 0.3s; }
 
         footer { padding: 80px 5%; text-align: center; color: #555; font-size: 0.65rem; letter-spacing: 2px; font-family: var(--font-display); border-top: 1px solid var(--border-color); font-weight: 600; }
 
         @media (max-width: 768px) {
             header { padding: 10px 3%; min-height: 70px; }
             .nav-right { flex-direction: column; align-items: flex-end; gap: 5px; }
+            .side-panel { width: 100%; }
             .hero .new { font-size: 4.5rem; }
-            .infrastructure-hero { padding-top: 190px; } 
             .timer-val { font-size: 1.8rem; }
-            #dynamic-notif { right: 10px; left: 10px; bottom: 20px; max-width: none; }
         }
     </style>
 </head>
 <body>
 
+<!-- DYNAMIC NOTIFICATIONS -->
 <div id="dynamic-notif">
     <div class="notif-icon-circle" id="notif-icon">!</div>
     <div class="notif-content">
@@ -273,10 +257,11 @@
     </div>
 </div>
 
+<!-- WHO IS SEZER MODAL (Standard Popup) -->
 <div id="about-modal" class="modal-overlay">
     <div class="modal-content-box">
-        <span class="close-modal-btn" onclick="closeWho()">×</span>
-        <h2 class="modal-title-text">SELAM, BEN SEZER KÜLCÜ</h2>
+        <span class="close-btn" onclick="closeWho()" style="color:var(--gold)">×</span>
+        <h2 style="font-family: var(--font-display); color: var(--gold); margin-bottom: 20px; font-size: 1.2rem;">SELAM, BEN SEZER KÜLCÜ</h2>
         <p style="color: #ccc; font-size: 1rem; line-height: 1.8; font-weight: 400;">
             23 yaşındayım ve bu işin mutfağından geliyorum. Sektördeki o kağnı hızıyla çalışan, sizi günlerce bekleten yavaş sistemleri profesyonel ekibimizle beraber geriye ittik. <br><br>
             Külcü Medya'yı kurarken tek bir amacım vardı: <strong>Hız ve prestij.</strong> Kendi yazdığımız özel altyapılar sayesinde saniyelerle yarışıyoruz. Bizde beklemek diye bir kelime yok. Eğer profilini zirveye taşımak istiyorsan, doğru adamın yanındasın.
@@ -284,17 +269,42 @@
     </div>
 </div>
 
-<div id="lesson-modal" class="modal-overlay">
-    <div class="modal-content-box">
-        <span class="close-modal-btn" onclick="closeLesson()">×</span>
-        <h2 class="modal-title-text" style="font-size: 1.5rem;">YAZILIM VE PHP DERSLERİ</h2>
-        <p style="color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 15px; text-align: left;">
-            Sana her şeyin çok kolay olduğu yalanını söyleyemem; ama 5 yıllık tecrübemle o zorlukları nasıl en hızlı şekilde aşacağını ve profesyonel bir yazılımcı gibi düşünmeyi öğretebilirim. Bu süreç profesyonel bir eğitim olduğu için ücretlidir.
-        </p>
-        <div style="border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-weight: 900; font-size: 0.8rem; border-radius: 4px; margin-bottom: 20px; display: inline-block; text-transform: uppercase;">PROFESYONEL EĞİTİM | ÜCRETLİDİR</div>
-        <div style="margin-top: 10px;">
-            <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow" style="padding: 15px 30px; font-size: 0.7rem;">İLETİŞİME GEÇİN</a>
+<!-- RISK PANEL (Modern Slide-in Drawer) -->
+<div id="side-overlay" class="side-panel-overlay" onclick="closeRisk()"></div>
+<div id="risk-panel" class="side-panel">
+    <span class="close-btn" onclick="closeRisk()">×</span>
+    <div class="side-panel-content">
+        <h2 class="risk-panel-title">⚠️ ÇOK ÖNEMLİ: GÜVENLİK VE RİSK BİLGİLENDİRMESİ</h2>
+        
+        <div class="risk-text-p">
+            <strong>Lütfen Dikkat:</strong> Son zamanlarda sosyal medya algoritmalarının (Instagram, TikTok vb.) yaptığı güncellemeler sonucunda, dışarıdan müdahale edilen hesaplarda yüksek risk gözlemlenmektedir. En yakın çevremizdeki kullanıcılarda dahi hesap kapanmaları ve kısıtlamalar yaşandığını bizzat deneyimledik.
         </div>
+
+        <p class="risk-text-p" style="font-weight: 700; color: #fff; border-bottom: 1px solid #1a1a1a; padding-bottom: 10px;">ŞARTLARI KABUL ETMELİSİNİZ:</p>
+        
+        <div class="risk-box-item">
+            <span class="risk-box-title">1. Hesap Kapanma Riski:</span>
+            <span class="risk-box-desc">Yapılan işlemler %100 güvenli değildir. Algoritma takibine takılan hesaplar kısıtlanabilir veya kalıcı olarak kapanabilir.</span>
+        </div>
+
+        <div class="risk-box-item">
+            <span class="risk-box-title">2. Sorumluluk Reddi:</span>
+            <span class="risk-box-desc">Oluşacak hiçbir teknik sorundan veya maddi/manevi zarardan Sezer Külcü / Külcü Medya sorumlu tutulamaz.</span>
+        </div>
+
+        <div class="risk-box-item">
+            <span class="risk-box-title">3. Kesin Onay:</span>
+            <span class="risk-box-desc">Siparişi tamamladığınızda, hesap kaybı dahil tüm durumları peşinen kabul ettiğinizi beyan etmiş olursunuz.</span>
+        </div>
+
+        <div class="accept-container">
+            <input type="checkbox" id="risk-check" class="accept-checkbox">
+            <label for="risk-check" class="accept-label">ANLADIM, TÜM RİSKLERİ KABUL EDİYORUM</label>
+        </div>
+
+        <button id="risk-confirm-btn" class="btn-confirm-risk" onclick="closeRisk()" disabled>KABUL ET VE DEVAM ET</button>
+        
+        <p style="color: #444; font-size: 0.65rem; margin-top: 20px; text-transform: uppercase; font-family: var(--font-display); text-align: center;">Güvenliğiniz bizim için değerlidir.</p>
     </div>
 </div>
 
@@ -314,15 +324,16 @@
     <div class="nav-right">
         <div class="btn-stack">
             <div class="who-btn" onclick="openWho()">SEZER KÜLCÜ kİMDİR?</div>
-            <div class="lesson-btn" onclick="openLesson()">Yazılım Ve PHP Dersleri</div>
+            <div class="risk-btn" onclick="openRisk()">⚠️ SON DURUM VE RİSKLER (OKU)</div>
         </div>
         <a href="https://www.instagram.com/darksezer06" target="_blank" class="ig-btn-nav">
-            <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <svg class="ig-icon" style="width:16px; height:16px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             Instagram
         </a>
     </div>
 </header>
 
+<!-- INFRASTRUCTURE SECTION -->
 <section class="infrastructure-hero">
     <div class="infra-badge">ÖZEL API TEKNOLOJİSİ</div>
     <h2 class="infra-title">RAKİPLERİMİZİ <span>GERİDE BIRAKTIK</span></h2>
@@ -331,26 +342,24 @@
 
 <div class="stats-top">
     <div class="stat-box">
-        <div class="stat-top-info"><span>KÜLCÜ MEDYA</span> ALTYAPISI</div>
         <div class="stat-val">%100</div>
         <div class="stat-label">GÜVENİLİR SİSTEM</div>
     </div>
     <div class="stat-box">
-        <div class="stat-top-info">YÜKSEK <span>HIZ</span> VE PERFORMANS</div>
         <div class="stat-val">50B+</div>
         <div class="stat-label">MUTLU MÜŞTERİ</div>
     </div>
     <div class="stat-box">
-        <div class="stat-top-info"><span>PREMİUM</span> TESLİMAT SİSTEMİ</div>
         <div class="stat-val">2 SANİYE</div>
         <div class="stat-label">TESLİMAT HIZI</div>
     </div>
 </div>
 
+<!-- HERO MAIN -->
 <section class="hero">
     <div class="image-text-block">
         <div class="quality-badge" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; border-radius: 50px; font-size: 0.6rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; display: inline-block;">KALİTENİN TEK ADRESİ</div>
-        <h2 class="main-hero-title" style="font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 15px;">SIRADANLIĞI UNUTUN, <span>PRESTİJİ SATIN ALIN.</span></h2>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 15px;">SIRADANLIĞI UNUTUN, <span>PRESTİJİ SATIN ALIN.</span></h2>
     </div>
 
     <h3 style="color:var(--gold); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 15px; font-family: var(--font-display); font-weight: 900;">KAMPANYA SONA ERİYOR</h3>
@@ -375,179 +384,112 @@
         <a href="https://www.shopier.com/43908489" target="_blank" class="btn-gold-promo">SİPARİŞ VER</a>
     </div>
 
+    <!-- VIP SERVICES GRID -->
     <div style="margin-top: 80px; text-align: left;">
-        <h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); margin-bottom: 30px; text-align: center;">Özel Çözümler & VIP Hizmetler 💎🔥</h2>
+        <h2 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); margin-bottom: 30px; text-align: center;">Özel Çözümler & VIP Hizmetler 💎🔥</h2>
+        
         <div class="packages-container" style="padding: 0; background: transparent; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
             <div class="vip-service-card">
                 <div class="vip-limited-badge">VİP Limitli Stok</div>
-                <div>
-                    <h4 class="vip-card-title">Kapalı Profil Analiz & Görüntüleme</h4>
-                    <p class="vip-card-sub">Takip isteği göndermeden gizli profilleri analiz edin. (Yüksek gizlilik ve güvenlik garantisi).</p>
-                </div>
-                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">SATIN AL / BİLGİ AL</a>
+                <h4 class="vip-card-title">Kapalı Profil Analiz & Görüntüleme</h4>
+                <p class="vip-card-sub">Takip isteği göndermeden gizli profilleri analiz edin.</p>
+                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">BİLGİ AL</a>
             </div>
-
             <div class="vip-service-card">
                 <div class="vip-limited-badge">VİP Limitli Stok</div>
-                <div>
-                    <h4 class="vip-card-title">WhatsApp Global Numara Çözümleri</h4>
-                    <p class="vip-card-sub">İş veya özel kullanım için yurt dışı tabanlı (USA, UK, DE) WhatsApp onay servisleri.</p>
-                </div>
-                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">SATIN AL / BİLGİ AL</a>
+                <h4 class="vip-card-title">WhatsApp Global Numara Çözümleri</h4>
+                <p class="vip-card-sub">Global WhatsApp onay servisleri (USA, UK, DE).</p>
+                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">BİLGİ AL</a>
             </div>
-
             <div class="vip-service-card">
                 <div class="vip-limited-badge">VİP Limitli Stok</div>
-                <div>
-                    <h4 class="vip-card-title">Eski Tarihli (Old) Hesap Satışı</h4>
-                    <p class="vip-card-sub">Kapanmalara karşı dayanıklı, güven skoru yüksek 2012-2020 arası kurulumlu Instagram hesapları.</p>
-                </div>
-                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">SATIN AL / BİLGİ AL</a>
+                <h4 class="vip-card-title">Eski Tarihli (Old) Hesap Satışı</h4>
+                <p class="vip-card-sub">Kapanmalara dayanıklı 2012-2020 kurulumlu hesaplar.</p>
+                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">BİLGİ AL</a>
             </div>
-
-            <div class="vip-service-card">
-                <div class="vip-limited-badge">VİP Limitli Stok</div>
-                <div>
-                    <h4 class="vip-card-title">Telegram Sanal Numara Hizmeti</h4>
-                    <p class="vip-card-sub">Kişisel numaranızı gizli tutun. Saniyeler içinde global numaralarla Telegram onayı alın. İkinci bir hesaba sahip olun.</p>
-                </div>
-                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">SATIN AL / BİLGİ AL</a>
-            </div>
-
-            <div class="vip-service-card">
-                <div class="vip-limited-badge">VİP Limitli Stok</div>
-                <div>
-                    <h4 class="vip-card-title">Keşfet Etkili Kaydetme & Paylaşım Paketi</h4>
-                    <p class="vip-card-sub">"Sadece takipçi yetmez! Gönderilerinizi binlerce kez kaydettirerek algoritmayı tetikleyin ve keşfete düşmenize olanak sağlar."</p>
-                </div>
-                <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-vip-action">SATIN AL / BİLGİ AL</a>
-            </div>
-        </div>
-
-        <div class="critical-warning-box" style="margin: 40px 0;">
-            <div class="warning-title">⚠️ KRİTİK UYARI</div>
-            <p style="font-size: 0.85rem; color: #aaa; line-height: 1.8; text-transform: uppercase; font-weight: 500;">
-                Şüpheli görülen işlemler için tarafımızca ek kimlik doğrulaması talep edilebilir. Yasal sorumluluk tamamen kullanıcıya aittir. Üçüncü şahısların haklarını ihlal eden veya yasal olmayan talepler işleme alınmaz. Kullanıcı, aldığı hizmeti platform kurallarına uygun kullanmakla yükümlüdür. Firmamız, şüpheli veya kötü niyetli gördüğü siparişleri tek taraflı iptal etme hakkını saklı tutar.
-            </p>
         </div>
     </div>
 </section>
 
-<section class="economic-section">
-    <h2 class="gold-title">HER BÜTÇEYE UYGUN SERVİSLER</h2>
-    <p class="promo-subtitle">BU FİYATA YOK</p>
-    <div class="economic-grid">
-        <div class="eco-card"><div class="eco-amount">1000 TAKİPÇİ</div><div class="eco-price">50₺</div><ul class="eco-details"><li>Global aktif kullanıcılar</li><li>Şifre istenmez</li><li>2 saniyede yüklenir</li></ul><a href="https://www.shopier.com/43981135" target="_blank" class="btn-eco-order">SİPARİŞ VER</a></div>
-        <div class="eco-card"><div class="eco-amount">1500 TAKİPÇİ</div><div class="eco-price">100₺</div><ul class="eco-details"><li>Global aktif kullanıcılar</li><li>Şifre istenmez</li><li>2 saniyede yüklenir</li></ul><a href="https://www.shopier.com/43981141" target="_blank" class="btn-eco-order">SİPARİŞ VER</a></div>
-        <div class="eco-card"><div class="eco-amount">2000 TAKİPÇİ</div><div class="eco-price">150₺</div><ul class="eco-details"><li>Global aktif kullanıcılar</li><li>Şifre istenmez</li><li>2 saniyede yüklenir</li></ul><a href="https://www.shopier.com/43981154" target="_blank" class="btn-eco-order">SİPARİŞ VER</a></div>
-        <div class="eco-card"><div class="eco-amount">2500 TAKİPÇİ</div><div class="eco-price">200₺</div><ul class="eco-details"><li>Global aktif kullanıcılar</li><li>Şifre istenmez</li><li>2 saniyede yüklenir</li></ul><a href="https://www.shopier.com/43981163" target="_blank" class="btn-eco-order">SİPARİŞ VER</a></div>
-    </div>
-    <a href="https://www.instagram.com/darksezer06" target="_blank" class="btn-contact-yellow">İLETİŞİME GEÇİN @DARKSEZER06</a>
-</section>
-
-<div style="padding: 0 5%; margin-top: 50px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi paketleri 👑🚀</h2></div>
-<section class="packages-container">
-    <div class="pkg-card"><div><h4>BAŞLANGIÇ</h4><div class="pkg-amount">5.000+</div><ul class="pkg-features"><li>- Onay sonrası yükleme</li><li>- 3 dk teslimat</li><li>- 30 gün garanti</li><li>- Aktif kullanıcılar</li></ul></div><a href="https://www.shopier.com/43906729" target="_blank" class="btn-buy">2.500 TL - SATIN AL</a></div>
-    <div class="pkg-card"><div class="pkg-badge">EN POPÜLER</div><div><h4>POPÜLER</h4><div class="pkg-amount">25.000+</div><ul class="pkg-features"><li>- Işık hızında yükleme</li><li>- Yüksek etkileşim</li><li>- Prestij garantisi</li><li>- Premium destek</li></ul></div><a href="https://www.shopier.com/43906888" target="_blank" class="btn-buy">4.500 TL - SATIN AL</a></div>
-    <div class="pkg-card"><div class="pkg-badge">VIP HİZMET</div><div><h4>KURUMSAL</h4><div class="pkg-amount">50.000+</div><ul class="pkg-features"><li>- Sunucu önceliği</li><li>- Maksimum hız</li><li>- Keşfet etkili</li><li>- 7/24 asistan</li></ul></div><a href="https://www.shopier.com/43906953" target="_blank" class="btn-buy">8.500 TL - SATIN AL</a></div>
-</section>
-
-<div style="padding: 0 5%; margin-top: 30px;"><h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Beğeni paketleri ❤️🚀</h2></div>
-<section class="packages-container">
-    <div class="pkg-card"><div><h4>BAŞLANGIÇ BEĞENİ</h4><div class="pkg-amount">2.000+</div><ul class="pkg-features"><li>- Anlık gönderim</li><li>- Şifresiz</li><li>- Keşfet etkili</li></ul></div><a href="https://www.shopier.com/43907943" target="_blank" class="btn-buy">105 TL - SATIN AL</a></div>
-    <div class="pkg-card"><div class="pkg-badge">EN ÇOK SATAN</div><div><h4>STANDART BEĞENİ</h4><div class="pkg-amount">10.000+</div><ul class="pkg-features"><li>- Yüksek kalite</li><li>- Hızlı teslimat</li><li>- 30 gün telafi</li></ul></div><a href="https://www.shopier.com/43908027" target="_blank" class="btn-buy">350 TL - SATIN AL</a></div>
-    <div class="pkg-card"><div class="pkg-badge">ULTRA VIP</div><div><h4>PREMİUM BEĞENİ</h4><div class="pkg-amount">50.000+</div><ul class="pkg-features"><li>- %100 keşfet</li><li>- Özel sunucu</li><li>- 7/24 destek</li></ul></div><a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850 TL - SATIN AL</a></div>
-</section>
-
-<section class="customer-reviews-section">
-    <div style="text-align: center;"><h2 class="gold-title">MÜŞTERİ DENEYİMLERİ</h2><p class="promo-subtitle">SİZDEN GELENLER</p></div>
-    <div class="reviews-grid">
-        <div class="review-card"><div class="user-info"><div class="user-meta"><span class="user-name">Mert Hakan</span><span class="user-handle">@merthakan_official</span></div></div><p class="review-content">"Sezer bey ile çalışmak ayrıcalık. 10k beğeni anında yüklendi."</p></div>
-        <div class="review-card"><div class="user-info"><div class="user-meta"><span class="user-name">Selin Yıldız</span><span class="user-handle">@selinyildizzz</span></div></div><p class="review-content">"Butiğim için aldım. Sezer bey her soruma yanıt verdi."</p></div>
+<!-- ECONOMIC OFFERS -->
+<section class="economic-section" style="padding: 80px 5%; background: #050505; text-align: center;">
+    <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--gold); margin-bottom: 40px;">HER BÜTÇEYE UYGUN SERVİSLER</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+        <div style="background: #0A0A0A; border: 1px solid #1A1A1A; padding: 30px; border-radius: 4px; text-align: left;">
+            <div style="color:#fff; font-family: var(--font-display); font-size: 1rem;">1000 TAKİPÇİ</div>
+            <div style="color:var(--gold); font-size: 1.8rem; font-weight: 900; margin: 10px 0;">50₺</div>
+            <a href="https://www.shopier.com/43981135" target="_blank" style="background: var(--gold); color:#000; display:block; text-align:center; padding:12px; font-weight:900; text-decoration:none; font-family: var(--font-display); font-size:0.7rem;">SİPARİŞ VER</a>
+        </div>
+        <div style="background: #0A0A0A; border: 1px solid #1A1A1A; padding: 30px; border-radius: 4px; text-align: left;">
+            <div style="color:#fff; font-family: var(--font-display); font-size: 1rem;">2000 TAKİPÇİ</div>
+            <div style="color:var(--gold); font-size: 1.8rem; font-weight: 900; margin: 10px 0;">150₺</div>
+            <a href="https://www.shopier.com/43981154" target="_blank" style="background: var(--gold); color:#000; display:block; text-align:center; padding:12px; font-weight:900; text-decoration:none; font-family: var(--font-display); font-size:0.7rem;">SİPARİŞ VER</a>
+        </div>
     </div>
 </section>
 
+<!-- PACKAGES -->
+<div style="padding: 0 5%; margin-top: 50px;"><h2 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold);">Takipçi paketleri 👑🚀</h2></div>
+<section class="packages-container">
+    <div class="pkg-card"><div><h4>BAŞLANGIÇ</h4><div class="pkg-amount">5.000+</div><ul class="pkg-features"><li>- Işık hızında yükleme</li><li>- 30 gün garanti</li><li>- Aktif kullanıcılar</li></ul></div><a href="https://www.shopier.com/43906729" target="_blank" class="btn-buy">2.500 TL - SATIN AL</a></div>
+    <div class="pkg-card"><div class="pkg-badge">EN POPÜLER</div><div><h4>POPÜLER</h4><div class="pkg-amount">25.000+</div><ul class="pkg-features"><li>- Yüksek etkileşim</li><li>- Prestij garantisi</li><li>- Premium destek</li></ul></div><a href="https://www.shopier.com/43906888" target="_blank" class="btn-buy">4.500 TL - SATIN AL</a></div>
+</section>
+
+<!-- FAQ SECTION -->
 <section class="faq-section">
-    <h2 class="faq-title-main">SIKÇA SORULAN SORULAR & BİLGİLER</h2>
-    
+    <h2 class="faq-title-main">SIKÇA SORULAN SORULAR</h2>
     <div class="faq-item">
-        <p class="faq-q">Hizmet ve Risk Bilgilendirmesi (Önemli)</p>
-        <div class="faq-a">
-            <strong>Platform Politikaları:</strong> Sosyal medya platformları (Instagram, Telegram vb.) sürekli algoritma güncellemesi yapmaktadır. Satın alınan servislerin hesap üzerindeki etkileri, platformun o anki kurallarına ve hesabınızın geçmişine bağlıdır.
-
-            <strong>Hesap Güvenliği:</strong> Sipariş sonrası hesaplarda yaşanabilecek; kapanma, kısıtlanma, ihlal veya düşüş gibi durumlarda Külcü Medya ve Pro Ekip sorumlu tutulamaz. Kullanıcı, üçüncü taraf yazılımlar veya servisler kullanmanın risklerini bilerek sipariş vermiş sayılır.
-
-            <strong>Geri İade:</strong> İşlem başlatıldıktan sonra hesap kapatılması veya kullanıcı hatası (kullanıcı adı değiştirme, hesabı gizliye alma vb.) durumlarında ücret iadesi yapılmaz.
-        </div>
+        <p class="faq-q">ÖDEMELER GÜVENLİ Mİ?</p>
+        <p class="faq-a">Evet, Shopier güvencesiyle 256-bit SSL korumalı altyapıda ödeme yaparsınız.</p>
     </div>
-
     <div class="faq-item">
-        <p class="faq-q">🔥 HAKKIMIZDA: KÜLCÜ MEDYA FARKI!</p>
-        <div class="faq-a">
-            Selam! Ben Külcü Medya'nın kurucusu. Sosyal medyanın tozunu attırdığımız bu yolculuğa 5 yıl önce başladım ve bugün bizzat kurduğum "Pro Ekip" ile piyasanın en sağlam panellerinden birini yönetiyoruz.
-
-            Peki, neden herkes gibi değiliz?
-
-            <strong>Gece Sizinle, Gündüz Sizinle:</strong> Bizim mesaimiz güneş batınca başlar! Sosyal medyanın en hareketli olduğu saatlerde, akşam 19:00’dan sabah 11:00’e kadar kesintisiz destek ve işlem sağlıyoruz. Herkes uyurken biz sizin hesaplarınızı büyütüyoruz! 🌙⚡
-
-            <strong>5 Yıllık Kurt Tecrübesi:</strong> Sektördeki tüm güncellemeleri, patlayan servisleri ve yeni taktikleri 5 yıldır bizzat takip ediyorum. Yani burada "deneme-yanılma" yok, tecrübeyle sabit profesyonellik var.
-
-            <strong>Şahsi Güvencem:</strong> Külcü Medya bir "bot" sitesi değil; her şeyiyle benim kurduğum, arkasında durduğum bir marka. Sorununuz olduğunda karşınızda muhatap bulacağınız, bizzat ilgilendiğimiz bir yapı.
-
-            <strong>Sempatik Ama Disiplinli:</strong> Bizimle çalışırken kendinizi yabancı hissetmezsiniz. Ekibimiz hem samimi hem de işinde tam bir profesyoneldir.
-        </div>
+        <p class="faq-q">HİZMET VE RİSK BİLGİSİ</p>
+        <p class="faq-a">Tüm sosyal medya müdahalelerinde algoritma kaynaklı riskler mevcuttur. Lütfen sağ üstteki risk panelini detaylı okuyunuz.</p>
     </div>
-
-    <div class="faq-item">
-        <p class="faq-q">⏰ ÇALIŞMA SAATLERİMİZ</p>
-        <div class="faq-a">
-            Sosyal medyanın uykusu yoktur ama bizim çalışma saatlerimiz nettir:
-
-            <strong>19:00 - 11:00 (Gece Mesaisi & Erken Sabah)</strong> 
-            Bu saatler arasında ekibimiz tam kadro yanınızda!
-        </div>
-    </div>
-
-    <div class="faq-item">
-        <p class="faq-q">⚖️ YASAL SORUMLULUK VE HİZMET ŞARTLARI</p>
-        <div class="faq-a">
-            Külcü Medya olarak sunduğumuz tüm servislerde güvenliği ön planda tutuyoruz. Ancak, platformumuzun düzenini ve güvenliğini korumak adına aşağıdaki kurallar tüm kullanıcılarımız için geçerlidir:
-
-            <strong>Bireysel Sorumluluk:</strong> Sitemiz üzerinden alınan hizmetlerin (takipçi, beğeni, numara onay vb.) kullanım amacı ve doğuracağı sonuçlar tamamen kullanıcının sorumluluğundadır. Külcü Medya, üçüncü şahısların haklarını ihlal eden veya yasalara aykırı kullanım taleplerini desteklemez.
-
-            <strong>Hizmet Sınırları:</strong> Sunulan servisler sosyal medya platformlarının (Instagram, Telegram, WhatsApp vb.) güncel algoritmalarına göre sağlanır. Platformlar tarafından yapılan güncellemelerden kaynaklı teknik aksaklıklarda Külcü Medya "aracı ve teknik danışman" konumundadır.
-
-            <strong>İptal ve Red Hakkı:</strong> Firmamız; etik dışı, şüpheli, dolandırıcılık şüphesi uyandıran veya kötü niyetli olduğu tespit edilen siparişleri tek taraflı olarak iptal etme ve hizmeti durdurma hakkını saklı tutar.
-
-            <strong>Veri Gizliliği:</strong> İşlemleriniz sırasında paylaşılan bilgiler, hizmetin tamamlanması dışında hiçbir amaçla kullanılmaz ve üçüncü taraflarla paylaşılmaz. Ancak, resmi makamlardan gelen yasal talepler bu gizlilik kapsamının dışındadır.
-
-            Külcü Medya'dan hizmet satın alan her kullanıcı, yukarıdaki maddeleri ve "Kullanım Şartları"nı peşinen kabul etmiş sayılır.
-        </div>
-    </div>
-
-    <div class="faq-item"><p class="faq-q">ÖDEMELER GÜVENLİ Mİ?</p><p class="faq-a">Türkiye'nin en güvenli ödeme altyapısı olan <strong>Shopier</strong> üzerinden işlem yapabilirsiniz.</p></div>
-    <div class="faq-item"><p class="faq-q">ŞİFREMİ VERMEM GEREKİYOR MU?</p><p class="faq-a">Asla. Bizim sistemimiz tamamen şifresiz çalışır. Sadece profil linkiniz yeterlidir.</p></div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact-section">
     <h2 style="font-family: var(--font-display); font-size: 1rem; color: #fff; margin-bottom: 20px;">SİZİN İÇİN BURADAYIZ</h2>
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://www.instagram.com/darksezer06" target="_blank" class="contact-link">INSTAGRAM DM</a>
-            <a href="mailto:kulcumedya@gmail.com" class="btn-support">DESTEK TALEBİ OLUŞTUR</a>
-        </div>
-        <a href="mailto:kulcumedya@gmail.com" class="mail-link">KULCUMEDYA@GMAIL.COM</a>
-    </div>
+    <a href="https://www.instagram.com/darksezer06" target="_blank" class="contact-link">INSTAGRAM DM</a>
+    <br>
+    <a href="mailto:kulcumedya@gmail.com" class="btn-support">KULCUMEDYA@GMAIL.COM</a>
 </section>
 
-<footer>© 2026 SMM Hizmetleri | Tüm hakları saklıdır. Sitemiz üzerinden hizmet satın alan her kullanıcı "Kullanım Şartlarını" kabul etmiş sayılır.</footer>
+<footer>© 2026 Külcü Medya | Tüm hakları saklıdır. Kullanım şartlarını kabul etmiş sayılırsınız.</footer>
 
 <script>
+    // MODAL CONTROL
     function openWho() { document.getElementById('about-modal').style.display = 'flex'; }
     function closeWho() { document.getElementById('about-modal').style.display = 'none'; }
-    function openLesson() { document.getElementById('lesson-modal').style.display = 'flex'; }
-    function closeLesson() { document.getElementById('lesson-modal').style.display = 'none'; }
+    
+    // RISK PANEL CONTROL (SLIDE EFFECT)
+    function openRisk() { 
+        document.getElementById('risk-panel').classList.add('show');
+        document.getElementById('side-overlay').style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    }
+    function closeRisk() { 
+        document.getElementById('risk-panel').classList.remove('show');
+        document.getElementById('side-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scroll
+    }
 
+    // RISK CHECKBOX LOGIC
+    const riskCheck = document.getElementById('risk-check');
+    const riskBtn = document.getElementById('risk-confirm-btn');
+    
+    riskCheck.addEventListener('change', function() {
+        if(this.checked) {
+            riskBtn.disabled = false;
+            riskBtn.classList.add('active');
+        } else {
+            riskBtn.disabled = true;
+            riskBtn.classList.remove('active');
+        }
+    });
+
+    // TIMER LOGIC
     const deadline = new Date().getTime() + (3 * 3600000 + 4 * 60000 + 15000);
     function updateTimer() {
         const t = deadline - new Date().getTime();
@@ -558,20 +500,11 @@
     }
     setInterval(updateTimer, 1000);
 
-    const reviews = [{u:"@mehmet_yilmaz", t:'"Gerçekten 2 saniyede geldi!"'}, {u:"@asli_demir", t:'"Şifresiz olması harika."'}, {u:"@can_luxury", t:'"En hızlı servis bu."'}];
-    let rIdx = 0;
-    setInterval(() => {
-        const revPop = document.getElementById('review-popup');
-        rIdx = (rIdx + 1) % reviews.length;
-        document.getElementById('review-user').innerText = reviews[rIdx].u;
-        document.getElementById('review-text').innerText = reviews[rIdx].t;
-        revPop.classList.add('show');
-        setTimeout(() => revPop.classList.remove('show'), 5000);
-    }, 12000);
-
+    // DYNAMIC NOTIFICATION LOGIC
     function showDynamicNotif() {
         const notifEl = document.getElementById('dynamic-notif');
-        const mode = Math.floor(Math.random() * 3);
+        if(!notifEl) return;
+        const mode = Math.floor(Math.random() * 2);
         if (mode === 0) {
             document.getElementById('notif-type').innerText = "CANLI İSTATİSTİK";
             document.getElementById('notif-message').innerHTML = `Şu an <b>${Math.floor(Math.random()*150+100)}</b> kişi aktif.`;
@@ -583,6 +516,18 @@
         setTimeout(() => notifEl.classList.remove('show'), 6000);
     }
     setTimeout(() => { showDynamicNotif(); setInterval(showDynamicNotif, 15000); }, 3000);
+
+    // REVIEW POPUP LOGIC
+    const reviews = [{u:"@mehmet_yilmaz", t:'"Gerçekten 2 saniyede geldi!"'}, {u:"@asli_demir", t:'"Şifresiz olması harika."'}];
+    let rIdx = 0;
+    setInterval(() => {
+        const revPop = document.getElementById('review-popup');
+        rIdx = (rIdx + 1) % reviews.length;
+        document.getElementById('review-user').innerText = reviews[rIdx].u;
+        document.getElementById('review-text').innerText = reviews[rIdx].t;
+        revPop.classList.add('show');
+        setTimeout(() => revPop.classList.remove('show'), 5000);
+    }, 12000);
 </script>
 
 </body>
