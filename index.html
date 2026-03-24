@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #FFD700;
-            --gold-gradient: linear-gradient(135deg, #FFD700 0%, #FFF8DC 50%, #B8860B 100%);
+            --gold: #FDCB15;
+            --gold-gradient: linear-gradient(135deg, #FDCB15 0%, #FFF8DC 50%, #B8860B 100%);
             --dark-bg: #000000;
             --card-bg: #0A0A0A;
             --border-color: #1A1A1A;
@@ -76,7 +76,7 @@
             padding: 15px 20px; border-radius: 4px;
             display: flex; align-items: center; gap: 12px; z-index: 9999;
             transform: translateY(200%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 30px rgba(255,215,0,0.15);
+            box-shadow: 0 0 30px rgba(253, 203, 21, 0.15);
         }
         #notification-toast.show { transform: translateY(0); }
         .toast-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
@@ -101,7 +101,7 @@
         .modal-content-box {
             background: #0A0A0A; border: 1px solid var(--gold); padding: 40px; border-radius: 8px;
             max-width: 600px; width: 100%; position: relative; text-align: center;
-            max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(255, 215, 0, 0.1);
+            max-height: 90vh; overflow-y: auto; box-shadow: 0 0 50px rgba(253, 203, 21, 0.1);
         }
 
         .close-modal-btn { 
@@ -123,7 +123,7 @@
             width: 42px; height: 42px; background: var(--gold-gradient); border-radius: 4px;
             display: flex; align-items: center; justify-content: center;
             font-family: var(--font-display); font-weight: 900; color: #000; font-size: 1.1rem;
-            letter-spacing: -1px; box-shadow: 0 0 15px rgba(255,215,0,0.3); position: relative; overflow: hidden; flex-shrink: 0;
+            letter-spacing: -1px; box-shadow: 0 0 15px rgba(253, 203, 21, 0.3); position: relative; overflow: hidden; flex-shrink: 0;
         }
         .logo-km::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -140,7 +140,7 @@
         .btn-stack { display: flex; flex-direction: column; gap: 5px; }
 
         .who-btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); text-align: center; transition: 0.3s; }
-        .who-btn:hover { background: rgba(255, 215, 0, 0.1); }
+        .who-btn:hover { background: rgba(253, 203, 21, 0.1); }
         
         .risk-btn { background: #ff4444; color: #fff; padding: 8px 15px; font-size: 0.6rem; font-weight: 800; cursor: pointer; text-transform: uppercase; font-family: var(--font-display); border: 1px solid #ff4444; text-align: center; text-decoration: none; transition: 0.3s; }
         .risk-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
@@ -155,7 +155,7 @@
         .ig-icon { width: 16px; height: 16px; fill: currentColor; }
 
         .infrastructure-hero { padding-top: 180px; background: #080808; border-bottom: 1px solid var(--border-color); text-align: center; padding-bottom: 30px; }
-        .infra-badge { display: inline-block; background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 25px; letter-spacing: 2px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.1); }
+        .infra-badge { display: inline-block; background: rgba(253, 203, 21, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 25px; letter-spacing: 2px; box-shadow: 0 0 15px rgba(253, 203, 21, 0.1); }
         .infra-title { font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; }
         .infra-title span { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .infra-sub { color: #555; font-size: 0.75rem; margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
@@ -173,18 +173,18 @@
         .old-price { text-decoration: line-through; color: #ff4444; font-size: 2rem; margin-right: 15px; opacity: 0.7; font-weight: 700; }
         .hero .new { color: var(--gold); font-size: clamp(4rem, 15vw, 9rem); font-weight: 900; font-family: var(--font-display); line-height: 0.8; margin-top: 10px; }
 
-        .countdown-wrap { margin: 60px auto 30px; max-width: 500px; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; background: rgba(255, 215, 0, 0.03); }
+        .countdown-wrap { margin: 60px auto 30px; max-width: 500px; border: 1px solid var(--border-color); padding: 30px; border-radius: 4px; background: rgba(253, 203, 21, 0.03); }
         .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .timer-val { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--gold); }
         .timer-box small { letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
 
-        .btn-gold-promo { background: var(--gold); color: #000; display: inline-block; width: 100%; max-width: 450px; padding: 25px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); transition: transform 0.3s, box-shadow 0.3s; font-family: var(--font-display); }
-        .btn-gold-promo:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        .btn-gold-promo { background: var(--gold); color: #000; display: inline-block; width: 100%; max-width: 450px; padding: 25px; text-align: center; text-decoration: none; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; box-shadow: 0 0 30px rgba(253, 203, 21, 0.4); transition: transform 0.3s, box-shadow 0.3s; font-family: var(--font-display); }
+        .btn-gold-promo:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(253, 203, 21, 0.6); }
 
         .packages-container { padding: 40px 5% 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; background: #000; }
         .pkg-card { background: var(--gold); padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 4px; transition: 0.3s; color: #000; position: relative; }
         .pkg-card:hover { transform: translateY(-10px); }
-        .pkg-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #000; color: var(--gold); padding: 8px 25px; border: 2px solid var(--gold); font-family: var(--font-display); font-size: 0.6rem; font-weight: 900; white-space: nowrap; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,215,0,0.3); z-index: 10; }
+        .pkg-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #000; color: var(--gold); padding: 8px 25px; border: 2px solid var(--gold); font-family: var(--font-display); font-size: 0.6rem; font-weight: 900; white-space: nowrap; border-radius: 50px; box-shadow: 0 5px 15px rgba(253, 203, 21, 0.3); z-index: 10; }
         .pkg-card h4 { font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 10px; font-weight: 800; letter-spacing: 1px; }
         .pkg-amount { font-family: var(--font-display); font-size: 3rem; font-weight: 900; margin: 10px 0; letter-spacing: -2px; }
         .pkg-features { list-style: none; margin: 30px 0; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.1); }
@@ -192,7 +192,7 @@
         .btn-buy { background: #000; color: var(--gold); display: block; width: 100%; padding: 22px; border-radius: 2px; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-family: var(--font-display); }
 
         .vip-service-card { background: #0A0A0A; border: 1px solid #222; padding: 35px; border-radius: 8px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: 0.3s; }
-        .vip-service-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1); }
+        .vip-service-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(253, 203, 21, 0.1); }
         .vip-card-title { font-family: var(--font-display); font-size: 0.9rem; color: #fff; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
         .vip-card-sub { font-size: 0.85rem; color: #888; margin-bottom: 25px; line-height: 1.6; }
         .vip-limited-badge { position: absolute; top: 15px; right: 15px; background: var(--gold-gradient); color: #000; padding: 4px 10px; font-size: 0.55rem; font-weight: 900; font-family: var(--font-display); border-radius: 2px; text-transform: uppercase; animation: pulse-gold 2s infinite; }
@@ -216,21 +216,30 @@
         .eco-details li::before { content: "-"; color: var(--gold); font-weight: bold; }
         .btn-eco-order { background: var(--gold); color: #000; padding: 12px; font-family: var(--font-display); font-weight: 900; text-decoration: none; text-align: center; border-radius: 2px; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; transition: 0.3s; }
 
-        /* MÜŞTERİ DENEYİMLERİ */
+        /* MÜŞTERİ DENEYİMLERİ GÜNCELLENDİ */
         .customer-reviews-section { padding: 80px 5%; background: #050505; border-top: 1px solid var(--border-color); }
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
         .review-card { background: #0A0A0A; border: 1px solid var(--border-color); padding: 30px; border-radius: 8px; transition: 0.3s; position: relative; overflow: hidden; }
         .review-card::before { content: '"'; position: absolute; top: 10px; right: 20px; font-size: 5rem; color: var(--gold); opacity: 0.05; font-family: var(--font-display); }
-        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.05); }
+        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(253, 203, 21, 0.05); }
+        
         .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .user-avatar { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+        .user-avatar { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            border: 2px solid var(--gold); 
+            object-fit: cover; 
+            background: #111;
+        }
         .user-meta { display: flex; flex-direction: column; }
         .user-name { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; color: #fff; text-transform: uppercase; }
         .user-handle { font-size: 0.7rem; color: var(--gold); font-weight: 600; }
+        
         .review-content { font-size: 0.85rem; color: #ccc; font-style: italic; line-height: 1.6; position: relative; z-index: 1; }
         .review-stars { color: var(--gold); font-size: 0.7rem; margin-top: 10px; letter-spacing: 2px; }
 
-        .btn-contact-yellow { background: var(--gold); color: #000; padding: 20px 50px; font-family: var(--font-display); font-weight: 900; text-decoration: none; display: inline-block; border-radius: 2px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255,215,0,0.2); transition: 0.3s; }
+        .btn-contact-yellow { background: var(--gold); color: #000; padding: 20px 50px; font-family: var(--font-display); font-weight: 900; text-decoration: none; display: inline-block; border-radius: 2px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(253, 203, 21, 0.2); transition: 0.3s; }
 
         .faq-section { padding: 80px 5%; background: #000; border-top: 1px solid var(--border-color); }
         .faq-title-main { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); margin-bottom: 40px; text-align: center; letter-spacing: 2px; }
@@ -357,7 +366,7 @@
 
 <section class="hero">
     <div class="image-text-block">
-        <div class="quality-badge" style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; border-radius: 50px; font-size: 0.6rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; display: inline-block;">KALİTENİN TEK ADRESİ</div>
+        <div class="quality-badge" style="background: rgba(253, 203, 21, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; border-radius: 50px; font-size: 0.6rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; display: inline-block;">KALİTENİN TEK ADRESİ</div>
         <h2 class="main-hero-title" style="font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.8rem); font-weight: 900; color: #ffffff; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 15px;">SIRADANLIĞI UNUTUN, <span>PRESTİJİ SATIN ALIN.</span></h2>
     </div>
 
@@ -385,7 +394,7 @@
 
     <div style="margin-top: 80px; text-align: left;">
         <h2 class="section-title" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); margin-bottom: 10px; text-align: center;">Özel Çözümler & VIP Hizmetler 💎🔥</h2>
-        <p style="color: #ff4444; font-family: var(--font-display); font-size: 0.75rem; text-align: center; margin-bottom: 30px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">bu servislerimiz kısa süreliğine bakımdadır.</p>
+        <p style="color: #00ff00; font-family: var(--font-display); font-size: 0.75rem; text-align: center; margin-bottom: 30px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Aşağıdaki servislerimiz tekrar aktif hale getirilmiştir. Keyifli alışverişler dileriz.</p>
         
         <div class="packages-container" style="padding: 0; background: transparent; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
             <div class="vip-service-card">
@@ -469,7 +478,7 @@
     <div class="pkg-card"><div class="pkg-badge">ULTRA VIP</div><div><h4>PREMİUM BEĞENİ</h4><div class="pkg-amount">50.000+</div><ul class="pkg-features"><li>- %100 keşfet</li><li>- Özel sunucu</li><li>- 7/24 destek</li></ul></div><a href="https://www.shopier.com/43908062" target="_blank" class="btn-buy">850 TL - SATIN AL</a></div>
 </section>
 
-<!-- MÜŞTERİ DENEYİMLERİ BÖLÜMÜ -->
+<!-- MÜŞTERİ DENEYİMLERİ BÖLÜMÜ - PROFİL RESİMLERİ EKLENDİ -->
 <section class="customer-reviews-section">
     <div style="text-align: center;">
         <h2 class="gold-title">MÜŞTERİ DENEYİMLERİ</h2>
@@ -478,7 +487,7 @@
     <div class="reviews-grid">
         <div class="review-card">
             <div class="user-info">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mert" alt="Avatar" class="user-avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mert&backgroundColor=b6e3f4,c0aede,d1d4f9" alt="Mert Avatar" class="user-avatar">
                 <div class="user-meta">
                     <span class="user-name">Mert Hakan</span>
                     <span class="user-handle">@merthakan_official</span>
@@ -490,7 +499,7 @@
         
         <div class="review-card">
             <div class="user-info">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Selin" alt="Avatar" class="user-avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Selin&backgroundColor=ffdfbf,ffd5dc,d1d4f9" alt="Selin Avatar" class="user-avatar">
                 <div class="user-meta">
                     <span class="user-name">Selin Yıldız</span>
                     <span class="user-handle">@selinyildizzz</span>
@@ -502,7 +511,7 @@
 
         <div class="review-card">
             <div class="user-info">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Burak" alt="Avatar" class="user-avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Burak&backgroundColor=c0aede,b6e3f4" alt="Burak Avatar" class="user-avatar">
                 <div class="user-meta">
                     <span class="user-name">Burak Çelik</span>
                     <span class="user-handle">@burakclkk</span>
@@ -514,7 +523,7 @@
 
         <div class="review-card">
             <div class="user-info">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Eda" alt="Avatar" class="user-avatar">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Eda&backgroundColor=ffd5dc,ffdfbf" alt="Eda Avatar" class="user-avatar">
                 <div class="user-meta">
                     <span class="user-name">Eda Nur</span>
                     <span class="user-handle">@edanur_vlog</span>
